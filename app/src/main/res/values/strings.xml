@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Reiceitas App</string>
+
+    <string name="s_descricao_img_fundo_login">Imagem de uma pizza usada como fundo da tela</string>
+    <string name="s_requestIdTokenGoogle">359831614848-39crbsfo5kuj40nn5eh2oifsotu5nrat.apps.googleusercontent.com</string>
 </resources>

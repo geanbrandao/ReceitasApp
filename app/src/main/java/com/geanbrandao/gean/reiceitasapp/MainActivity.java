@@ -93,16 +93,24 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // muda de activity
                             Toast.makeText(MainActivity.this, "O login com o Google feito com sucesso!", Toast.LENGTH_SHORT).show();
-                            //startActivity(new Intent(getContext(), InicioActivity.class));
+                            startActivity(new Intent(MainActivity.this,  ListaReceitas.class));
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.i("firebaseAuthWithGoogle", "signInWithCredential:failure", task.getException());
                             Toast.makeText(MainActivity.this, "O login com o Google falhou!", Toast.LENGTH_SHORT).show();
                             //Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
                         }
-
-                        // ...
                     }
                 });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(mAuth.getCurrentUser() != null) {
+            startActivity(new Intent(this,  ListaReceitas.class));
+        } else {
+            Toast.makeText(MainActivity.this, "É necessario fazer login para continuar.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

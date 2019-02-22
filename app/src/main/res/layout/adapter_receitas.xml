@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/s_descricao_img_adapter_receita"
+        app:srcCompat="@android:color/transparent" />
+
+    <TextView
+        android:id="@+id/tv_categoria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/s_lista_receitas_categoria"
+        android:textColor="@color/colorBlack" />
+
+    <TextView
+        android:id="@+id/tv_nome_receita"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/s_lista_receita_nome"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlack"/>
+
+    <include layout="@layout/divisor" />
+</LinearLayout>

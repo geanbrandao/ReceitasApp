@@ -1,5 +1,6 @@
 package com.geanbrandao.gean.reiceitasapp;
 
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -79,6 +80,21 @@ public class ListaReceitas extends AppCompatActivity implements SwipeRefreshLayo
 
     @Override
     public void onImageClicked(int position) {
-
+        Log.i("RespostaRecycler", " = "+receitas.get(position).getRecipeName());
+        Intent i = new Intent(this, DetalhesActivity.class);
+        i.putExtra("smallImageUrls", receitas.get(position).getSmallImageUrls().get(0));
+        i.putExtra("sourceDisplayName", receitas.get(position).getSourceDisplayName());
+        i.putExtra("sourceDisplayName", receitas.get(position).getSourceDisplayName());
+        i.putExtra("quantidadeIngredientes", receitas.get(position).getIngredients().size());
+        int aux = 0;
+        for (String s: receitas.get(position).getIngredients()) {
+            i.putExtra("ing"+aux, s); // adiciona um ingrediente
+            ++aux;
+        }
+        i.putExtra("id", receitas.get(position).getId());
+        i.putExtra("recipeName", receitas.get(position).getRecipeName());
+        i.putExtra("totalTimeInSeconds", receitas.get(position).getTotalTimeInSeconds());
+        i.putExtra("rating", receitas.get(position).getRating());
+        startActivity(i);
     }
 }

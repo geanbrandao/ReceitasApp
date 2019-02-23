@@ -20,7 +20,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:text="@string/s_lista_receitas_categoria"
-        android:textColor="@color/colorBlack" />
+        android:textColor="@color/colorBlack"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/tv_nome_receita"

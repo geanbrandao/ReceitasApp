@@ -1,4 +1,4 @@
-package com.geanbrandao.gean.reiceitasapp;
+package com.geanbrandao.gean.reiceitasapp.helper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

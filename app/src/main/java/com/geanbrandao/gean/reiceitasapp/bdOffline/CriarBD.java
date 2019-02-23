@@ -1,8 +1,9 @@
-package com.geanbrandao.gean.reiceitasapp;
+package com.geanbrandao.gean.reiceitasapp.bdOffline;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class CriarBD extends SQLiteOpenHelper {
 
@@ -16,6 +17,7 @@ public class CriarBD extends SQLiteOpenHelper {
     protected static final String NOME_RECEITA = "recipeName";
     protected static final String TOTAL_TIME_IN_SECONDS = "totalTimeInSeconds";
     protected static final String RATING = "rating";
+    protected static final String FOTO = "foto";
     protected static final int VERSAO = 1;
 
     public CriarBD(Context context){
@@ -43,7 +45,10 @@ public class CriarBD extends SQLiteOpenHelper {
         sql.append(TOTAL_TIME_IN_SECONDS);
         sql.append(" integer,");
         sql.append(RATING);
-        sql.append(" integer)");
+        sql.append(" integer,");
+        sql.append(FOTO);
+        sql.append(" blob)");
+
 
 //        String sql = "CREATE TABLE "+TABELA_RECEITAS+" ("
 //                + ID + " integer primary key autoincrement,"
@@ -54,7 +59,11 @@ public class CriarBD extends SQLiteOpenHelper {
 //                + TOTAL_TIME_IN_SECONDS + " integer,"
 //                + RATING + " integer"
 //                + ")";
-        db.execSQL(sql.toString()); // cria a tabela
+        try {
+            db.execSQL(sql.toString()); // cria a tabela
+        } catch (Exception e) {
+            Log.i("Database", "Falha ao criar o banco de dados"+e);
+        }
     }
 
     @Override

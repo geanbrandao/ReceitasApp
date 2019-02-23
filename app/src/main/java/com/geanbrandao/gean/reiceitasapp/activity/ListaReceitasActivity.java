@@ -1,4 +1,4 @@
-package com.geanbrandao.gean.reiceitasapp;
+package com.geanbrandao.gean.reiceitasapp.activity;
 
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -9,12 +9,19 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.geanbrandao.gean.reiceitasapp.helper.MelhoraImagem;
+import com.geanbrandao.gean.reiceitasapp.R;
+import com.geanbrandao.gean.reiceitasapp.adapter.ReceitasAdapater;
+import com.geanbrandao.gean.reiceitasapp.json.Receita;
+import com.geanbrandao.gean.reiceitasapp.json.ResultadoFeed;
+import com.geanbrandao.gean.reiceitasapp.conexao.Yummly;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaReceitas extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, ReceitasAdapater.ReceitaAdapaterListener {
+public class ListaReceitasActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, ReceitasAdapater.ReceitaAdapaterListener {
 
-    private List<Recipe> receitas = new ArrayList<>();
+    private List<Receita> receitas = new ArrayList<>();
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ReceitasAdapater mAdapater;
@@ -30,13 +37,13 @@ public class ListaReceitas extends AppCompatActivity implements SwipeRefreshLayo
 
         Yummly y = new Yummly(getResources().getString(R.string.appId),
                 getResources().getString(R.string.appKey));
-        SearchResult result;
+        ResultadoFeed result;
 
         Log.i("RetornoApi", "antes do try ");
         try {
             result = y.search();
             //Log.i("RetornoApi", "entrou no try "+result.getMatches().size());
-            for (Recipe receita: result.getMatches()) {
+            for (Receita receita: result.getMatches()) {
                 String url = receita.getSmallImageUrls().get(0);
                 receita.getSmallImageUrls().set(0, MelhoraImagem.alteraUrl(url));
                 receitas.add(receita);

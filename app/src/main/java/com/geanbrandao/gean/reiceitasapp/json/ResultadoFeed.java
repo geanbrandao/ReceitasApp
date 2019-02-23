@@ -1,4 +1,4 @@
-package com.geanbrandao.gean.reiceitasapp;
+package com.geanbrandao.gean.reiceitasapp.json;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -8,16 +8,16 @@ import java.util.List;
  * A recipe search result containing matches, counts, etc.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SearchResult {
+public class ResultadoFeed {
 
     private int totalMatchCount;
     private Attribution attribution;
-    private List<Recipe> matches;
+    private List<Receita> matches;
 
-    public SearchResult() {
+    public ResultadoFeed() {
     }
 
-    public SearchResult(int totalMatchCount, Attribution attribution, List<Recipe> matches) {
+    public ResultadoFeed(int totalMatchCount, Attribution attribution, List<Receita> matches) {
         this.totalMatchCount = totalMatchCount;
         this.attribution = attribution;
         this.matches = matches;
@@ -39,11 +39,11 @@ public class SearchResult {
         return attribution;
     }
 
-    public void setMatches(List<Recipe> matches) {
+    public void setMatches(List<Receita> matches) {
         this.matches = matches;
     }
 
-    public List<Recipe> getMatches() {
+    public List<Receita> getMatches() {
         return matches;
     }
 

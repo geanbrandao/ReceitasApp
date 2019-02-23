@@ -1,4 +1,4 @@
-package com.geanbrandao.gean.reiceitasapp;
+package com.geanbrandao.gean.reiceitasapp.activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.geanbrandao.gean.reiceitasapp.R;
+import com.geanbrandao.gean.reiceitasapp.bdOffline.CriarBD;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -31,10 +33,16 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
+    // sqlite
+    private CriarBD criarBD;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // sqlite
+        criarBD = new CriarBD(this);
+
         // firebase
         mAuth = FirebaseAuth.getInstance();
 
@@ -93,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // muda de activity
                             Toast.makeText(MainActivity.this, "O login com o Google feito com sucesso!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(MainActivity.this,  ListaReceitas.class));
+                            startActivity(new Intent(MainActivity.this,  ListaReceitasActivity.class));
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.i("firebaseAuthWithGoogle", "signInWithCredential:failure", task.getException());
@@ -108,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if(mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(this,  ListaReceitas.class));
+            startActivity(new Intent(this,  ListaReceitasActivity.class));
         } else {
             Toast.makeText(MainActivity.this, "É necessario fazer login para continuar.", Toast.LENGTH_SHORT).show();
         }

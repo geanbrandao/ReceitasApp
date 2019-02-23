@@ -1,7 +1,10 @@
-package com.geanbrandao.gean.reiceitasapp;
+package com.geanbrandao.gean.reiceitasapp.doInBackgroud;
 
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.geanbrandao.gean.reiceitasapp.json.ReceitaDetalhes;
+import com.geanbrandao.gean.reiceitasapp.helper.ValoresEstaticos;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,12 +1,15 @@
 
-package com.geanbrandao.gean.reiceitasapp;
+package com.geanbrandao.gean.reiceitasapp.conexao;
 
-import android.os.AsyncTask;
 import android.util.Log;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.geanbrandao.gean.reiceitasapp.json.ReceitaDetalhes;
+import com.geanbrandao.gean.reiceitasapp.json.ResultadoFeed;
+import com.geanbrandao.gean.reiceitasapp.doInBackgroud.CarregaDadosTask;
+import com.geanbrandao.gean.reiceitasapp.doInBackgroud.LeValoresTask;
+import com.geanbrandao.gean.reiceitasapp.doInBackgroud.LeValoresTaskDetalhes;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,7 +17,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.concurrent.ExecutionException;
 
-import static com.geanbrandao.gean.reiceitasapp.ValoresEstaticos.mapper;
+import static com.geanbrandao.gean.reiceitasapp.helper.ValoresEstaticos.mapper;
 
 
 /**
@@ -28,7 +31,7 @@ public class Yummly {
     private String mAppKey;
 
     private InputStream in;
-    private SearchResult result;
+    private ResultadoFeed result;
     private ReceitaDetalhes resultDetalhes;
 
     public Yummly(String appId, String appKey) {
@@ -36,7 +39,7 @@ public class Yummly {
         mAppKey = appKey;
     }
 
-    public SearchResult search() throws IOException {
+    public ResultadoFeed search() throws IOException {
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("recipes");

@@ -1,10 +1,10 @@
-package com.geanbrandao.gean.reiceitasapp;
+package com.geanbrandao.gean.reiceitasapp.json;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Recipe {
+public class Receita {
 
     private List<String> smallImageUrls;
     private String sourceDisplayName;
@@ -14,10 +14,10 @@ public class Recipe {
     private int totalTimeInSeconds;
     private int rating;
 
-    public Recipe() {
+    public Receita() {
     }
 
-    public Recipe(List<String> smallImageUrls, String sourceDisplayName, List<String> ingredients, String id, String recipeName, int totalTimeInSeconds, int rating) {
+    public Receita(List<String> smallImageUrls, String sourceDisplayName, List<String> ingredients, String id, String recipeName, int totalTimeInSeconds, int rating) {
         this.smallImageUrls = smallImageUrls;
         this.sourceDisplayName = sourceDisplayName;
         this.ingredients = ingredients;

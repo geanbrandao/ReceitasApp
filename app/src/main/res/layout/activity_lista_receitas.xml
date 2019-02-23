@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".ListaReceitas">
+    tools:context=".activity.ListaReceitasActivity">
 
     <EditText
         android:id="@+id/editText"
@@ -17,9 +17,9 @@
         android:layout_marginBottom="8dp"
         android:background="@color/colorBackgroundCaixaTexto"
         android:elevation="3dp"
-        android:drawableLeft="@drawable/ic_action_buscar"
+        android:drawableStart="@drawable/ic_action_buscar"
         android:ems="10"
-        android:hint="Busca"
+        android:hint="@string/s_busca"
         android:cursorVisible="false"
         android:inputType="textPersonName"
         android:textAlignment="center"

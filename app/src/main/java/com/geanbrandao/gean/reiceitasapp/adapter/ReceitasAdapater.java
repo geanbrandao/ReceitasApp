@@ -1,4 +1,4 @@
-package com.geanbrandao.gean.reiceitasapp;
+package com.geanbrandao.gean.reiceitasapp.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -13,16 +13,18 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.geanbrandao.gean.reiceitasapp.R;
+import com.geanbrandao.gean.reiceitasapp.json.Receita;
 
 import java.util.List;
 
 public class ReceitasAdapater extends RecyclerView.Adapter<ReceitasAdapater.MyViewHolder> {
 
-    private List<Recipe> receitas;
+    private List<Receita> receitas;
     private Context mContext;
     private ReceitaAdapaterListener listener;
 
-    public ReceitasAdapater(List<Recipe> receitas, Context mContext, ReceitaAdapaterListener listener) {
+    public ReceitasAdapater(List<Receita> receitas, Context mContext, ReceitaAdapaterListener listener) {
         this.receitas = receitas;
         this.mContext = mContext;
         this.listener = listener;
@@ -39,7 +41,7 @@ public class ReceitasAdapater extends RecyclerView.Adapter<ReceitasAdapater.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull ReceitasAdapater.MyViewHolder myViewHolder, int i) {
-        Recipe receita = receitas.get(i);
+        Receita receita = receitas.get(i);
         myViewHolder.mCategorias.setText(receita.getSourceDisplayName());
         myViewHolder.mNomeReceitas.setText(receita.getRecipeName());
         pegarImgReceita(myViewHolder, receita);
@@ -49,7 +51,7 @@ public class ReceitasAdapater extends RecyclerView.Adapter<ReceitasAdapater.MyVi
     }
 
 
-    private void pegarImgReceita(MyViewHolder myViewHolder, Recipe receita) {
+    private void pegarImgReceita(MyViewHolder myViewHolder, Receita receita) {
         if(!TextUtils.isEmpty(receita.getSmallImageUrls().get(0))){
             Glide.with(mContext).load(receita.getSmallImageUrls().get(0))
                     .diskCacheStrategy(DiskCacheStrategy.ALL)

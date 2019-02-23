@@ -1,4 +1,4 @@
-package com.geanbrandao.gean.reiceitasapp;
+package com.geanbrandao.gean.reiceitasapp.doInBackgroud;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

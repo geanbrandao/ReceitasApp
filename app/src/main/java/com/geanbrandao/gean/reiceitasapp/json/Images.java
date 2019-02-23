@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.geanbrandao.gean.reiceitasapp;
+package com.geanbrandao.gean.reiceitasapp.json;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

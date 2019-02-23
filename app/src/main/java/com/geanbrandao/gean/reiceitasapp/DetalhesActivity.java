@@ -2,6 +2,8 @@ package com.geanbrandao.gean.reiceitasapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,6 +14,7 @@ public class DetalhesActivity extends AppCompatActivity {
 
     private ImageView imageView;
     private TextView mDetNome, mDetCategoria, mDetIngredientes;
+    private ImageButton mVoltar;
     /*
     lembrar de modificar a url da imagem para alterar o tamanho dela
      */
@@ -24,6 +27,7 @@ public class DetalhesActivity extends AppCompatActivity {
         mDetNome = findViewById(R.id.tv_det_nome);
         mDetCategoria = findViewById(R.id.tv_det_categorias);
         mDetIngredientes = findViewById(R.id.tv_ingredientes);
+        mVoltar = findViewById(R.id.ib_voltar);
 
         Bundle bundle = getIntent().getExtras();
         if(bundle != null) {
@@ -44,6 +48,16 @@ public class DetalhesActivity extends AppCompatActivity {
                     .into(imageView);
         }
 
+        mVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
 
+    @Override
+    public void finish() {
+        super.finish();
     }
 }

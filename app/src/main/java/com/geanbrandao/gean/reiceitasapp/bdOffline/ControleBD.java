@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.geanbrandao.gean.reiceitasapp.json.Receita;
-
 public class ControleBD {
 
     private SQLiteDatabase db;
@@ -57,6 +55,18 @@ public class ControleBD {
         }
         db.close();
         return cursor;
+    }
+
+    public long deletaReceita(String id){
+        StringBuilder builder = new StringBuilder();
+        builder.append(CriarBD.ID_RECEITA);
+        builder.append("=");
+        builder.append("'"+id+"'");
+        //String where = CriarBD.ID_RECEITA + "=" ;
+        db = banco.getReadableDatabase();
+        long result = db.delete(CriarBD.TABELA_RECEITAS,builder.toString(),null);
+        db.close();
+        return result;
     }
 
 }

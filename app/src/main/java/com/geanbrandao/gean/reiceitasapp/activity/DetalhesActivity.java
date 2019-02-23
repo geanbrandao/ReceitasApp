@@ -143,6 +143,15 @@ public class DetalhesActivity extends AppCompatActivity {
                         mFavorito.setBackground(getDrawable(R.drawable.ic_action_star_yellow));
                     }
                 } else {
+                    mFavorito.setBackground(getDrawable(R.drawable.ic_action_star_border_black));
+                    Log.i("Database", "Recipe deixou de ser favorita");
+
+                    long result = crud.deletaReceita(idReceitaAtual);
+                    if(result == -1) {
+                        Log.i("Database", "Não conseguiu deletar");
+                    } else {
+                        Log.i("Database", "dado deletado");
+                    }
                     // deleta
                 }
 

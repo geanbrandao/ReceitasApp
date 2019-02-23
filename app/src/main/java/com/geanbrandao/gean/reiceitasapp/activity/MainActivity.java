@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
 import com.geanbrandao.gean.reiceitasapp.R;
 import com.geanbrandao.gean.reiceitasapp.bdOffline.CriarBD;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;

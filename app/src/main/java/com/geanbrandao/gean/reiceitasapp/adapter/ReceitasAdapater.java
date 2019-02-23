@@ -14,18 +14,18 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.geanbrandao.gean.reiceitasapp.R;
-import com.geanbrandao.gean.reiceitasapp.json.Receita;
+import com.geanbrandao.gean.reiceitasapp.json.Recipe;
 
 import java.util.List;
 
 public class ReceitasAdapater extends RecyclerView.Adapter<ReceitasAdapater.MyViewHolder> {
 
-    private List<Receita> receitas;
+    private List<Recipe> recipes;
     private Context mContext;
     private ReceitaAdapaterListener listener;
 
-    public ReceitasAdapater(List<Receita> receitas, Context mContext, ReceitaAdapaterListener listener) {
-        this.receitas = receitas;
+    public ReceitasAdapater(List<Recipe> recipes, Context mContext, ReceitaAdapaterListener listener) {
+        this.recipes = recipes;
         this.mContext = mContext;
         this.listener = listener;
     }
@@ -41,22 +41,22 @@ public class ReceitasAdapater extends RecyclerView.Adapter<ReceitasAdapater.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull ReceitasAdapater.MyViewHolder myViewHolder, int i) {
-        Receita receita = receitas.get(i);
-        myViewHolder.mCategorias.setText(receita.getSourceDisplayName());
-        myViewHolder.mNomeReceitas.setText(receita.getRecipeName());
-        pegarImgReceita(myViewHolder, receita);
+        Recipe recipe = recipes.get(i);
+        myViewHolder.mCategorias.setText(recipe.getSourceDisplayName());
+        myViewHolder.mNomeReceitas.setText(recipe.getRecipeName());
+        pegarImgReceita(myViewHolder, recipe);
         // aplicar os eventos de click
         aplicarEventoClick(myViewHolder, i);
 
     }
 
 
-    private void pegarImgReceita(MyViewHolder myViewHolder, Receita receita) {
-        if(!TextUtils.isEmpty(receita.getSmallImageUrls().get(0))){
-            Glide.with(mContext).load(receita.getSmallImageUrls().get(0))
+    private void pegarImgReceita(MyViewHolder myViewHolder, Recipe recipe) {
+        if(!TextUtils.isEmpty(recipe.getSmallImageUrls().get(0))){
+            Glide.with(mContext).load(recipe.getSmallImageUrls().get(0))
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(myViewHolder.imageView);
-            Log.i("ImagemReceita", "Conseguiu pegar a url da img da receita.");
+            Log.i("ImagemReceita", "Conseguiu pegar a url da img da recipe.");
         } else {
             myViewHolder.imageView.setImageResource(R.drawable.img_padrao);
             Log.i("ImagemReceita", "Não conseguiu pegar a url");
@@ -74,7 +74,7 @@ public class ReceitasAdapater extends RecyclerView.Adapter<ReceitasAdapater.MyVi
 
     @Override
     public int getItemCount() {
-        return receitas.size();
+        return recipes.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

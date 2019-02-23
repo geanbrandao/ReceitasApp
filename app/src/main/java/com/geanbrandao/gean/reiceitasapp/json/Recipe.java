@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Receita {
+public class Recipe {
 
     private List<String> smallImageUrls;
     private String sourceDisplayName;
@@ -14,10 +14,10 @@ public class Receita {
     private int totalTimeInSeconds;
     private int rating;
 
-    public Receita() {
+    public Recipe() {
     }
 
-    public Receita(List<String> smallImageUrls, String sourceDisplayName, List<String> ingredients, String id, String recipeName, int totalTimeInSeconds, int rating) {
+    public Recipe(List<String> smallImageUrls, String sourceDisplayName, List<String> ingredients, String id, String recipeName, int totalTimeInSeconds, int rating) {
         this.smallImageUrls = smallImageUrls;
         this.sourceDisplayName = sourceDisplayName;
         this.ingredients = ingredients;

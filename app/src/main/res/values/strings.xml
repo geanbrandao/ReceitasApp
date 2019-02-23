@@ -8,7 +8,7 @@
     <string name="s_requestIdTokenGoogle">359831614848-39crbsfo5kuj40nn5eh2oifsotu5nrat.apps.googleusercontent.com</string>
     <string name="s_lista_receitas_categoria">Categoria</string>
     <string name="s_lista_receita_nome">Nome</string>
-    <string name="s_img_receita">Foto da receita</string>
+    <string name="s_img_receita">Foto da recipe</string>
     <string name="s_acessar_site">Acesse o Site</string>
     <string name="s_ingredientes">INGREDIENTES</string>
     <string name="s_busca">Busca</string>

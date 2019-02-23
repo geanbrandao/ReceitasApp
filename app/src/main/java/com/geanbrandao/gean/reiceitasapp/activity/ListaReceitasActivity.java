@@ -12,7 +12,7 @@ import android.util.Log;
 import com.geanbrandao.gean.reiceitasapp.helper.MelhoraImagem;
 import com.geanbrandao.gean.reiceitasapp.R;
 import com.geanbrandao.gean.reiceitasapp.adapter.ReceitasAdapater;
-import com.geanbrandao.gean.reiceitasapp.json.Receita;
+import com.geanbrandao.gean.reiceitasapp.json.Recipe;
 import com.geanbrandao.gean.reiceitasapp.json.ResultadoFeed;
 import com.geanbrandao.gean.reiceitasapp.conexao.Yummly;
 
@@ -21,7 +21,7 @@ import java.util.List;
 
 public class ListaReceitasActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, ReceitasAdapater.ReceitaAdapaterListener {
 
-    private List<Receita> receitas = new ArrayList<>();
+    private List<Recipe> recipes = new ArrayList<>();
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ReceitasAdapater mAdapater;
@@ -43,10 +43,10 @@ public class ListaReceitasActivity extends AppCompatActivity implements SwipeRef
         try {
             result = y.search();
             //Log.i("RetornoApi", "entrou no try "+result.getMatches().size());
-            for (Receita receita: result.getMatches()) {
-                String url = receita.getSmallImageUrls().get(0);
-                receita.getSmallImageUrls().set(0, MelhoraImagem.alteraUrl(url));
-                receitas.add(receita);
+            for (Recipe recipe : result.getMatches()) {
+                String url = recipe.getSmallImageUrls().get(0);
+                recipe.getSmallImageUrls().set(0, MelhoraImagem.alteraUrl(url));
+                recipes.add(recipe);
                 //Log.i("RetornoApi",recipe.getRecipeName()+" - "+recipe.getId()+" - "+recipe.getSourceDisplayName());
             }
 
@@ -57,7 +57,7 @@ public class ListaReceitasActivity extends AppCompatActivity implements SwipeRef
 
 
 
-        mAdapater = new ReceitasAdapater(receitas, this, this);
+        mAdapater = new ReceitasAdapater(recipes, this, this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -91,21 +91,21 @@ public class ListaReceitasActivity extends AppCompatActivity implements SwipeRef
 
     @Override
     public void onImageClicked(int position) {
-        Log.i("RespostaRecycler", " = "+receitas.get(position).getRecipeName());
+        Log.i("RespostaRecycler", " = "+ recipes.get(position).getRecipeName());
         Intent i = new Intent(this, DetalhesActivity.class);
-        i.putExtra("smallImageUrls", MelhoraImagem.alteraUrl(receitas.get(position).getSmallImageUrls().get(0)));
-        i.putExtra("sourceDisplayName", receitas.get(position).getSourceDisplayName());
-        i.putExtra("sourceDisplayName", receitas.get(position).getSourceDisplayName());
-        i.putExtra("quantidadeIngredientes", receitas.get(position).getIngredients().size());
+        i.putExtra("smallImageUrls", MelhoraImagem.alteraUrl(recipes.get(position).getSmallImageUrls().get(0)));
+        i.putExtra("sourceDisplayName", recipes.get(position).getSourceDisplayName());
+        i.putExtra("sourceDisplayName", recipes.get(position).getSourceDisplayName());
+        i.putExtra("quantidadeIngredientes", recipes.get(position).getIngredients().size());
         int aux = 0;
-        for (String s: receitas.get(position).getIngredients()) {
+        for (String s: recipes.get(position).getIngredients()) {
             i.putExtra("ing"+aux, s); // adiciona um ingrediente
             ++aux;
         }
-        i.putExtra("id", receitas.get(position).getId());
-        i.putExtra("recipeName", receitas.get(position).getRecipeName());
-        i.putExtra("totalTimeInSeconds", receitas.get(position).getTotalTimeInSeconds());
-        i.putExtra("rating", receitas.get(position).getRating());
+        i.putExtra("id", recipes.get(position).getId());
+        i.putExtra("recipeName", recipes.get(position).getRecipeName());
+        i.putExtra("totalTimeInSeconds", recipes.get(position).getTotalTimeInSeconds());
+        i.putExtra("rating", recipes.get(position).getRating());
         startActivity(i);
     }
 }

@@ -12,12 +12,12 @@ public class ResultadoFeed {
 
     private int totalMatchCount;
     private Attribution attribution;
-    private List<Receita> matches;
+    private List<Recipe> matches;
 
     public ResultadoFeed() {
     }
 
-    public ResultadoFeed(int totalMatchCount, Attribution attribution, List<Receita> matches) {
+    public ResultadoFeed(int totalMatchCount, Attribution attribution, List<Recipe> matches) {
         this.totalMatchCount = totalMatchCount;
         this.attribution = attribution;
         this.matches = matches;
@@ -39,11 +39,11 @@ public class ResultadoFeed {
         return attribution;
     }
 
-    public void setMatches(List<Receita> matches) {
+    public void setMatches(List<Recipe> matches) {
         this.matches = matches;
     }
 
-    public List<Receita> getMatches() {
+    public List<Recipe> getMatches() {
         return matches;
     }
 

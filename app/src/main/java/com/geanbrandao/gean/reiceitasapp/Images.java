@@ -16,7 +16,9 @@
 
 package com.geanbrandao.gean.reiceitasapp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Images {
 	
 	private String hostedLargeUrl;

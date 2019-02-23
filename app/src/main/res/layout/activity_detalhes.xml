@@ -17,14 +17,14 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/b_acessar_site"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@android:color/white"
+        android:background="@color/colorBackground"
         android:fontFamily="sans-serif-medium"
         android:text="Acesse o Site"
         android:textAllCaps="false"
@@ -57,8 +57,8 @@
             <ImageView
                 android:id="@+id/iv_det_receita"
                 android:layout_width="0dp"
-                android:layout_height="250dp"
-                android:scaleType="fitStart"
+                android:layout_height="400dp"
+                android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -109,7 +109,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@android:color/white"
+                android:layout_marginBottom="16dp"
+                android:background="@color/colorBackgroundCaixaTexto"
+                android:elevation="5dp"
                 android:fontFamily="sans-serif"
                 android:lineSpacingExtra="5dp"
                 android:padding="15dp"
@@ -117,31 +119,30 @@
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textColor="@color/colorBlack"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/tv_ingredientes_static"
                 app:layout_constraintStart_toStartOf="@+id/tv_ingredientes_static"
                 app:layout_constraintTop_toBottomOf="@+id/tv_ingredientes_static" />
 
-            <ImageButton
+            <Button
                 android:id="@+id/ib_voltar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:background="@android:color/transparent"
+                android:background="@drawable/ic_action_back_black"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_action_back_black" />
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
+            <Button
                 android:id="@+id/ib_favorito"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:background="@android:color/transparent"
+                android:background="@drawable/ic_action_star_border_black"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_action_star_border_black" />
+                app:layout_constraintTop_toTopOf="parent" />
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 

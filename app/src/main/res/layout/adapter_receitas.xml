@@ -8,9 +8,9 @@
     <ImageView
         android:id="@+id/iv_receita_adapter"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:scaleType="fitCenter"
+        android:layout_height="300dp"
         android:contentDescription="@string/s_descricao_img_adapter_receita"
+        android:scaleType="fitXY"
         app:srcCompat="@android:color/transparent" />
 
     <TextView
@@ -28,8 +28,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/s_lista_receita_nome"
-        android:textSize="20sp"
-        android:textColor="@color/colorBlack"/>
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp" />
 
     <include layout="@layout/divisor" />
 </LinearLayout>

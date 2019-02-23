@@ -31,19 +31,23 @@ public class ListaReceitas extends AppCompatActivity implements SwipeRefreshLayo
         Yummly y = new Yummly(getResources().getString(R.string.appId),
                 getResources().getString(R.string.appKey));
         SearchResult result;
+
         Log.i("RetornoApi", "antes do try ");
         try {
             result = y.search();
             //Log.i("RetornoApi", "entrou no try "+result.getMatches().size());
-            for (Recipe recipe: result.getMatches()) {
-                receitas.add(recipe);
-                Log.i("RetornoApi",recipe.getRecipeName()+" - "+recipe.getId()+" - "+recipe.getSourceDisplayName());
+            for (Recipe receita: result.getMatches()) {
+                String url = receita.getSmallImageUrls().get(0);
+                receita.getSmallImageUrls().set(0, MelhoraImagem.alteraUrl(url));
+                receitas.add(receita);
+                //Log.i("RetornoApi",recipe.getRecipeName()+" - "+recipe.getId()+" - "+recipe.getSourceDisplayName());
             }
 
         } catch (Exception e) {
             Log.i("RetornoApi", "Erro "+e);
             e.printStackTrace();
         }
+
 
 
         mAdapater = new ReceitasAdapater(receitas, this, this);
@@ -82,7 +86,7 @@ public class ListaReceitas extends AppCompatActivity implements SwipeRefreshLayo
     public void onImageClicked(int position) {
         Log.i("RespostaRecycler", " = "+receitas.get(position).getRecipeName());
         Intent i = new Intent(this, DetalhesActivity.class);
-        i.putExtra("smallImageUrls", receitas.get(position).getSmallImageUrls().get(0));
+        i.putExtra("smallImageUrls", MelhoraImagem.alteraUrl(receitas.get(position).getSmallImageUrls().get(0)));
         i.putExtra("sourceDisplayName", receitas.get(position).getSourceDisplayName());
         i.putExtra("sourceDisplayName", receitas.get(position).getSourceDisplayName());
         i.putExtra("quantidadeIngredientes", receitas.get(position).getIngredients().size());

@@ -12,12 +12,12 @@ public class Recipe {
     private String id;
     private String recipeName;
     private int totalTimeInSeconds;
-    private Number rating;
+    private int rating;
 
     public Recipe() {
     }
 
-    public Recipe(List<String> smallImageUrls, String sourceDisplayName, List<String> ingredients, String id, String recipeName, int totalTimeInSeconds, Number rating) {
+    public Recipe(List<String> smallImageUrls, String sourceDisplayName, List<String> ingredients, String id, String recipeName, int totalTimeInSeconds, int rating) {
         this.smallImageUrls = smallImageUrls;
         this.sourceDisplayName = sourceDisplayName;
         this.ingredients = ingredients;
@@ -67,11 +67,11 @@ public class Recipe {
         this.id = id;
     }
 
-    public Number getRating() {
+    public int getRating() {
         return this.rating;
     }
 
-    public void setRating(Number rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 

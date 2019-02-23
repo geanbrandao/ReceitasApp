@@ -1,0 +1,19 @@
+package com.geanbrandao.gean.reiceitasapp;
+
+import android.os.AsyncTask;
+import android.util.Log;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+public class LeValoresTaskDetalhes extends AsyncTask<InputStream, Void, ReceitaDetalhes> {
+    @Override
+    protected ReceitaDetalhes doInBackground(InputStream... inputStreams) {
+        try {
+            return ValoresEstaticos.mapper.readValue(inputStreams[0], ReceitaDetalhes.class);
+        } catch (IOException e) {
+            Log.i("RetornoApi", "LeValoresTaskDetalhes não foi concluido "+e);
+        }
+        return null;
+    }
+}

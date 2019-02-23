@@ -29,6 +29,7 @@ public class Yummly {
 
     private InputStream in;
     private SearchResult result;
+    private ReceitaDetalhes resultDetalhes;
 
     public Yummly(String appId, String appKey) {
         mAppId = appId;
@@ -37,48 +38,6 @@ public class Yummly {
 
     public SearchResult search() throws IOException {
 
-        // Perform search request.
-        in = performRequest();
-        // Parse json.
-        //Log.i("RetornoApi", "Erro7");
-        JsonFactory factory = new JsonFactory();
-        //Log.i("RetornoApi", "Erro8");
-        mapper = new ObjectMapper(factory);
-        //Log.i("RetornoApi", "Erro9");
-
-        try {
-            result = new LeValoresTask().execute(in).get();
-        } catch (ExecutionException e) {
-            Log.i("RetornoApi", "LeValoresTask Erro: "+e);
-        } catch (InterruptedException e) {
-            Log.i("RetornoApi", "LeValoresTask Erro: "+e);
-        }
-//        mapper.readValue(in, SearchResult.class);
-        Log.i("RetornoApi", ""+result.getMatches().get(0).getSourceDisplayName());
-        in.close();
-        return result;
-    }
-
-//	public Recipe getRecipe(String recipeId) throws IOException {
-//
-//		// Perform recipe request.
-//		InputStream in = performRequest(
-//				String.format("recipe/%s", URLEncoder.encode(recipeId, "utf8")),
-//				null);
-//		// Parse json.
-//		JsonFactory factory = new JsonFactory();
-//		ObjectMapper mapper = new ObjectMapper(factory);
-//
-//		Recipe result = mapper.readValue(in, Recipe.class);
-//
-//		in.close();
-//
-//		return result;
-//	}
-
-
-    private InputStream performRequest() throws IOException {
-        //Log.i("RetornoApi", "Erro1 ");
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("recipes");
         stringBuilder.append("?");
@@ -87,18 +46,62 @@ public class Yummly {
         stringBuilder.append("&");
         stringBuilder.append("_app_key=");
         stringBuilder.append(mAppKey);
+        in = performRequest(stringBuilder);
 
+        // Parse json.
+        JsonFactory factory = new JsonFactory();
+        mapper = new ObjectMapper(factory);
+
+
+        try {
+            result = new LeValoresTask().execute(in).get();
+        } catch (ExecutionException e) {
+            Log.i("RetornoApi", "LeValoresTask Erro: "+e);
+        } catch (InterruptedException e) {
+            Log.i("RetornoApi", "LeValoresTask Erro: "+e);
+        }
+        Log.i("RetornoApi", ""+result.getMatches().get(0).getSourceDisplayName());
+        in.close();
+        return result;
+    }
+
+	public ReceitaDetalhes getReceitaDetalhes(String recipeId) throws IOException, ExecutionException, InterruptedException {
+
+		StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("recipe");
+        stringBuilder.append("/");
+        stringBuilder.append(recipeId);
+        stringBuilder.append("?");
+        stringBuilder.append("_app_id=");
+        stringBuilder.append(mAppId);
+        stringBuilder.append("&");
+        stringBuilder.append("_app_key=");
+        stringBuilder.append(mAppKey);
+		in = performRequest(stringBuilder);
+		// Parse json.
+		JsonFactory factory = new JsonFactory();
+		ObjectMapper mapper = new ObjectMapper(factory);
+
+
+        try {
+            resultDetalhes = new LeValoresTaskDetalhes().execute(in).get();
+        } catch (ExecutionException e) {
+            Log.i("RetornoApi", "LeValoresTask Erro: "+e);
+        } catch (InterruptedException e) {
+            Log.i("RetornoApi", "LeValoresTask Erro: "+e);
+        }
+        //Log.i("RetornoApi", "LeValoresTask: "+resultDetalhes.getName());
+		in.close();
+		return resultDetalhes;
+	}
+
+
+    private InputStream performRequest(StringBuilder stringBuilder) throws IOException {
 
         URL endpoint = new URL(URL_INICIAL + stringBuilder);
-        //Log.i("RetornoApi", "Erro2"+endpoint.toString());
         URLConnection urlCon = endpoint.openConnection();
         Log.i("RetornoApi", "link? "+endpoint);
-        //Log.i("RetornoApi", "Erro3");
-        // Add header fields.
-        //urlCon.setRequestProperty("X-Yummly-App-ID", mAppId);
-        //Log.i("RetornoApi", "Erro4");
-        //urlCon.setRequestProperty("X-Yummly-App-Key", mAppKey);
-        //Log.i("RetornoApi", "Erro5");
+
         try {
             Log.i("RetornoApi", "UrlCon "+urlCon);
             return new CarregaDadosTask().execute(urlCon).get();

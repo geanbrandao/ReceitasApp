@@ -3,8 +3,10 @@
     <color name="colorPrimary">#10796B</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="colorBackground">#CCCACB</color>
-    <color name="colorBackgroundDark">#7E7E7E</color>
+    <color name="colorBackground">#FFB829</color>
+    <color name="colorBackgroundDark">#ff8229</color>
+    <color name="colorBackgroundCaixaTexto">#FDCC66</color>
+
 
 
     <color name="colorBlack">#000000</color>

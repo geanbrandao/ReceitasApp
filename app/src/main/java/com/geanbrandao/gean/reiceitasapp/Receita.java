@@ -1,24 +1,35 @@
-public class Receitas {
+package com.geanbrandao.gean.reiceitasapp;
+
+public class Receita {
 
     private int rating;
     private String id;
-    //private String smallImageUrls; // lista
+    private String smallImageUrls; // lista
     private String sourceDisplayName;
     private int totalTimeInSeconds;
     private String ingredients;
     private String recipeName;
 
-    public Receitas() {
+    public Receita() {
 
     }
 
-    public Receitas(int rating, String id, String sourceDisplayName, int totalTimeInSeconds, String ingredients, String recipeName) {
+    public Receita(int rating, String id, String smallImageUrls, String sourceDisplayName, int totalTimeInSeconds, String ingredients, String recipeName) {
         this.rating = rating;
         this.id = id;
+        this.smallImageUrls = smallImageUrls;
         this.sourceDisplayName = sourceDisplayName;
         this.totalTimeInSeconds = totalTimeInSeconds;
         this.ingredients = ingredients;
         this.recipeName = recipeName;
+    }
+
+    public String getSmallImageUrls() {
+        return smallImageUrls;
+    }
+
+    public void setSmallImageUrls(String smallImageUrls) {
+        this.smallImageUrls = smallImageUrls;
     }
 
     public int getRating() {

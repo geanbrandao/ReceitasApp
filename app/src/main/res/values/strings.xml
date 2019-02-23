@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Reiceitas App</string>
 
+    <string name="appId">6ac28980</string>
+    <string name="appKey">5443b0900f2ec4b050ac04c63a39aae7</string>
+
     <string name="s_descricao_img_fundo_login">Imagem de uma pizza usada como fundo da tela</string>
     <string name="s_requestIdTokenGoogle">359831614848-39crbsfo5kuj40nn5eh2oifsotu5nrat.apps.googleusercontent.com</string>
     <string name="s_lista_receitas_categoria">Categoria</string>

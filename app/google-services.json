@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "359831614848",
+    "firebase_url": "https://receitasapp-e7fb8.firebaseio.com",
+    "project_id": "receitasapp-e7fb8",
+    "storage_bucket": "receitasapp-e7fb8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:359831614848:android:8596fa23413a1fe5",
+        "android_client_info": {
+          "package_name": "com.geanbrandao.gean.reiceitasapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "359831614848-hegft61eq382u7l4jnoh6fonlknldfgf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.geanbrandao.gean.reiceitasapp",
+            "certificate_hash": "79fadf632a961463dce7151bf52393e024e3c678"
+          }
+        },
+        {
+          "client_id": "359831614848-39crbsfo5kuj40nn5eh2oifsotu5nrat.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACGWTCLTlQI-aOg0c8hWJ9S_4zza8pWkc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "359831614848-39crbsfo5kuj40nn5eh2oifsotu5nrat.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

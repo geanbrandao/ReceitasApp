@@ -1,4 +1,4 @@
 package com.geanbrandao.gean.reiceitasapp;
 
-public interface ApiInterface {
+public class ImageUrlsBySize {
 }

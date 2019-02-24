@@ -18,16 +18,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.geanbrandao.gean.reiceitasapp.R;
 import com.geanbrandao.gean.reiceitasapp.adapter.ReceitasAdapter;
 import com.geanbrandao.gean.reiceitasapp.conexao.Yummly;
 import com.geanbrandao.gean.reiceitasapp.helper.MelhoraImagem;
 import com.geanbrandao.gean.reiceitasapp.json.Recipe;
 import com.geanbrandao.gean.reiceitasapp.json.ResultadoFeed;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, SwipeRefreshLayout.OnRefreshListener, ReceitasAdapter.ReceitaAdapaterListener {
@@ -36,6 +43,9 @@ public class MenuActivity extends AppCompatActivity
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ReceitasAdapter mAdapater;
+    private CircleImageView ivFotoPerfil;
+    private TextView mNome, mEmail;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +63,13 @@ public class MenuActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View view = navigationView.getHeaderView(0);
+        ivFotoPerfil = view.findViewById(R.id.iv_perfil_foto);
+        mEmail = view.findViewById(R.id.tv_perfil_email);
+        mNome = view.findViewById(R.id.tv_perfil_nome);
 
+        // firebase
+        mAuth = FirebaseAuth.getInstance();
 
         recyclerView = findViewById(R.id.recycler_view_receitas);
         swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
@@ -94,6 +110,13 @@ public class MenuActivity extends AppCompatActivity
             }
         });
 
+        mNome.setText(mAuth.getCurrentUser().getDisplayName());
+        mEmail.setText(mAuth.getCurrentUser().getEmail());
+        Glide.with(this)
+                .load(mAuth.getCurrentUser().getPhotoUrl())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(ivFotoPerfil);
+
     }
 
     private void getReceitas() {
@@ -113,7 +136,7 @@ public class MenuActivity extends AppCompatActivity
         }
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -133,18 +156,22 @@ public class MenuActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        /*switch (id) {
-            case R.id.menu_favoritos:
-                startActivity(new Intent(this, FavoritosActivity.class));
+        switch (id) {
+//            case R.id.menu_favoritos:
+//                startActivity(new Intent(this, FavoritosActivity.class));
+//                break;
+            case R.id.menu_sair:
+                mAuth.signOut();
+                onResume();
                 break;
-        }*/
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -176,5 +203,13 @@ public class MenuActivity extends AppCompatActivity
     @Override
     public void onRefresh() {
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mAuth.getCurrentUser() == null) {
+            startActivity(new Intent(this, MainActivity.class));
+        }
     }
 }

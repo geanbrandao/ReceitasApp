@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if(mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(this,  ListaReceitasActivity.class));
+            startActivity(new Intent(this,  MenuActivity.class));
         } else {
             Toast.makeText(MainActivity.this, "É necessario fazer login para continuar.", Toast.LENGTH_SHORT).show();
         }

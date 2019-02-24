@@ -12,7 +12,17 @@
     <string name="s_acessar_site">Acesse o Site</string>
     <string name="s_ingredientes">INGREDIENTES</string>
     <string name="s_busca">Busca</string>
+    <string name="s_sair">Sair</string>
+    <string name="s_conta">Conta</string>
+    <string name="s_favoritos">Receitas Favoritas</string>
 
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
 
 
 </resources>

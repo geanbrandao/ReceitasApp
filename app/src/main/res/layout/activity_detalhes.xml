@@ -126,7 +126,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_ingredientes_static" />
 
             <Button
-                android:id="@+id/ib_voltar"
+                android:id="@+id/b_voltar_fav"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginStart="16dp"

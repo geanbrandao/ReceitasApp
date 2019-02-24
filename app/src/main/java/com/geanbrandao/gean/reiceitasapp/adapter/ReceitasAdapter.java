@@ -18,13 +18,13 @@ import com.geanbrandao.gean.reiceitasapp.json.Recipe;
 
 import java.util.List;
 
-public class ReceitasAdapater extends RecyclerView.Adapter<ReceitasAdapater.MyViewHolder> {
+public class ReceitasAdapter extends RecyclerView.Adapter<ReceitasAdapter.MyViewHolder> {
 
     private List<Recipe> recipes;
     private Context mContext;
     private ReceitaAdapaterListener listener;
 
-    public ReceitasAdapater(List<Recipe> recipes, Context mContext, ReceitaAdapaterListener listener) {
+    public ReceitasAdapter(List<Recipe> recipes, Context mContext, ReceitaAdapaterListener listener) {
         this.recipes = recipes;
         this.mContext = mContext;
         this.listener = listener;
@@ -40,7 +40,7 @@ public class ReceitasAdapater extends RecyclerView.Adapter<ReceitasAdapater.MyVi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ReceitasAdapater.MyViewHolder myViewHolder, int i) {
+    public void onBindViewHolder(@NonNull ReceitasAdapter.MyViewHolder myViewHolder, int i) {
         Recipe recipe = recipes.get(i);
         myViewHolder.mCategorias.setText(recipe.getSourceDisplayName());
         myViewHolder.mNomeReceitas.setText(recipe.getRecipeName());

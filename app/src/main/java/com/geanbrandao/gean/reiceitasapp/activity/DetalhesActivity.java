@@ -46,7 +46,7 @@ public class DetalhesActivity extends AppCompatActivity {
         mDetNome = findViewById(R.id.tv_det_nome);
         mDetCategoria = findViewById(R.id.tv_det_categorias);
         mDetIngredientes = findViewById(R.id.tv_ingredientes);
-        mVoltar = findViewById(R.id.ib_voltar);
+        mVoltar = findViewById(R.id.b_voltar_fav);
         mVisitarSite = findViewById(R.id.b_acessar_site);
         mFavorito = findViewById(R.id.ib_favorito);
 

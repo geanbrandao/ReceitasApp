@@ -6,6 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.geanbrandao.gean.reiceitasapp.helper.ReceitasFavoritas;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class ControleBD {
 
     private SQLiteDatabase db;
@@ -22,18 +27,6 @@ public class ControleBD {
         db = banco.getWritableDatabase();
          // seta os valores a serem inseridos
         values.put(CriarBD.ID_RECEITA, idReceita);
-
-//        int aux = 0;
-//        StringBuilder builder = new StringBuilder();
-//        for (String s: receita.getIngredients()) {
-//            builder.append("- ");
-//            builder.append(s);
-//            if(aux < receita.getIngredients().size() - 1 ) {
-//                builder.append("\n");
-//            }
-//            ++aux;
-//        }
-
         values.put(CriarBD.INGREDIENTES, ingredientes);
         values.put(CriarBD.NOME_RECEITA, nomeReceita);
         values.put(CriarBD.SOURCE_DISPLAY_NAME, sourceDN);
@@ -57,12 +50,55 @@ public class ControleBD {
         return cursor;
     }
 
+
+    public List<ReceitasFavoritas> readAll() {
+        Cursor cursor;
+        db = banco.getReadableDatabase();
+        List<ReceitasFavoritas> favoritas = new ArrayList<>();
+        String[] colunas = new String[]{
+                ""+CriarBD.ID_RECEITA,
+                ""+CriarBD.FOTO,
+                ""+CriarBD.INGREDIENTES,
+                ""+CriarBD.RATING,
+                ""+CriarBD.NOME_RECEITA,
+                ""+CriarBD.SOURCE_DISPLAY_NAME,
+                ""+CriarBD.TOTAL_TIME_IN_SECONDS
+        };
+
+        cursor = db.query(CriarBD.TABELA_RECEITAS, colunas, null, null, null, null, null, null );
+        if(cursor != null) {
+            cursor.moveToFirst();
+            Log.i("Database", "Retorno read, cursor nao nulo");
+        }
+        int i =0;
+        while (i < cursor.getCount()) {
+            ReceitasFavoritas fav = new ReceitasFavoritas();
+            fav.setId(cursor.getString(0));
+            Log.i("Favoritas", "linha "+cursor.getString(0));
+            fav.setFoto(cursor.getBlob(1));
+            Log.i("Favoritas", "linha foto" );
+            fav.setIngredientes(cursor.getString(2));
+            Log.i("Favoritas", "linha "+cursor.getString(2));
+            fav.setRating(cursor.getInt(3));
+            Log.i("Favoritas", "linha "+cursor.getInt(3));
+            fav.setNome(cursor.getString(i+4));
+            Log.i("Favoritas", "linha "+cursor.getString(4));
+            fav.setNomeFonte(cursor.getString(5));
+            Log.i("Favoritas", "linha "+cursor.getString(5));
+            fav.setTotalTimeSeg(cursor.getInt(6));
+            Log.i("Favoritas", "linha "+cursor.getInt(6));
+            i++;
+            cursor.moveToNext();
+            favoritas.add(fav);
+        }
+        db.close();
+        return favoritas;
+    }
     public long deletaReceita(String id){
         StringBuilder builder = new StringBuilder();
         builder.append(CriarBD.ID_RECEITA);
         builder.append("=");
         builder.append("'"+id+"'");
-        //String where = CriarBD.ID_RECEITA + "=" ;
         db = banco.getReadableDatabase();
         long result = db.delete(CriarBD.TABELA_RECEITAS,builder.toString(),null);
         db.close();

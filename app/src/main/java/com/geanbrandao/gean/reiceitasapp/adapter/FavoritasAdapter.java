@@ -23,9 +23,10 @@ public class FavoritasAdapter extends RecyclerView.Adapter<FavoritasAdapter.MyVi
     private FavoritasAdapaterListener listener;
     private List<ReceitasFavoritas> favoritas;
     private Context context;
-    public FavoritasAdapter(Context context, List<ReceitasFavoritas> favoritas) {
+    public FavoritasAdapter(Context context, List<ReceitasFavoritas> favoritas, FavoritasAdapaterListener listener) {
         this.context = context;
         this.favoritas = favoritas;
+        this.listener = listener;
     }
 
     @NonNull

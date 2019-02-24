@@ -32,6 +32,7 @@ public class ListaReceitasActivity extends AppCompatActivity implements SwipeRef
         setContentView(R.layout.activity_lista_receitas);
 
         recyclerView = findViewById(R.id.recycler_view_receitas);
+
         swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
         swipeRefreshLayout.setOnRefreshListener(this);
 
@@ -94,7 +95,6 @@ public class ListaReceitasActivity extends AppCompatActivity implements SwipeRef
         Log.i("RespostaRecycler", " = "+ recipes.get(position).getRecipeName());
         Intent i = new Intent(this, DetalhesActivity.class);
         i.putExtra("smallImageUrls", MelhoraImagem.alteraUrl(recipes.get(position).getSmallImageUrls().get(0)));
-        i.putExtra("sourceDisplayName", recipes.get(position).getSourceDisplayName());
         i.putExtra("sourceDisplayName", recipes.get(position).getSourceDisplayName());
         i.putExtra("quantidadeIngredientes", recipes.get(position).getIngredients().size());
         int aux = 0;

@@ -42,11 +42,11 @@ public class DetalhesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes);
 
-        imageView = findViewById(R.id.iv_det_receita);
-        mDetNome = findViewById(R.id.tv_det_nome);
-        mDetCategoria = findViewById(R.id.tv_det_categorias);
+        imageView = findViewById(R.id.iv_det_receita_off);
+        mDetNome = findViewById(R.id.tv_det_nome_off);
+        mDetCategoria = findViewById(R.id.tv_det_categorias_off);
         mDetIngredientes = findViewById(R.id.tv_ingredientes);
-        mVoltar = findViewById(R.id.b_voltar_fav);
+        mVoltar = findViewById(R.id.b_voltar_fav_off);
         mVisitarSite = findViewById(R.id.b_acessar_site);
         mFavorito = findViewById(R.id.ib_favorito);
 
@@ -78,6 +78,8 @@ public class DetalhesActivity extends AppCompatActivity {
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imageView);
         }
+//        Log.i("bundle", "limpou o bundle detalhes");
+//        bundle.clear();
 
 
         try {

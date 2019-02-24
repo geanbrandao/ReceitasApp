@@ -158,7 +158,7 @@ public class MenuActivity extends AppCompatActivity
         Log.i("RespostaRecycler", " = "+ recipes.get(position).getRecipeName());
         Intent i = new Intent(this, DetalhesActivity.class);
         i.putExtra("smallImageUrls", MelhoraImagem.alteraUrl(recipes.get(position).getSmallImageUrls().get(0)));
-        i.putExtra("sourceDisplayName", recipes.get(position).getSourceDisplayName());
+        //i.putExtra("sourceDisplayName", recipes.get(position).getSourceDisplayName());
         i.putExtra("sourceDisplayName", recipes.get(position).getSourceDisplayName());
         i.putExtra("quantidadeIngredientes", recipes.get(position).getIngredients().size());
         int aux = 0;

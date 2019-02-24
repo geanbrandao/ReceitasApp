@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // muda de activity
                             Toast.makeText(MainActivity.this, "O login com o Google feito com sucesso!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(MainActivity.this,  ListaReceitasActivity.class));
+                            startActivity(new Intent(MainActivity.this,  MenuActivity.class));
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.i("firebaseAuthWithGoogle", "signInWithCredential:failure", task.getException());

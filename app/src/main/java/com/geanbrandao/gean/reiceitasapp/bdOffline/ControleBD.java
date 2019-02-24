@@ -66,9 +66,9 @@ public class ControleBD {
         };
 
         cursor = db.query(CriarBD.TABELA_RECEITAS, colunas, null, null, null, null, null, null );
-        if(cursor != null) {
+        if(cursor.getCount() > 0) {
             cursor.moveToFirst();
-            Log.i("Database", "Retorno read, cursor nao nulo");
+            Log.i("Database", "Retorno read, linhas maior que zero "+cursor.getCount());
         }
         int i =0;
         while (i < cursor.getCount()) {
@@ -88,6 +88,7 @@ public class ControleBD {
             fav.setTotalTimeSeg(cursor.getInt(6));
             Log.i("Favoritas", "linha "+cursor.getInt(6));
             i++;
+            Log.i("Favoritas", "Fim da receita ");
             cursor.moveToNext();
             favoritas.add(fav);
         }

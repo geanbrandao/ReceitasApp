@@ -23,11 +23,12 @@ import com.geanbrandao.gean.reiceitasapp.helper.MelhoraImagem;
 import com.geanbrandao.gean.reiceitasapp.json.ReceitaDetalhes;
 
 import java.io.ByteArrayOutputStream;
+import java.util.List;
 
 public class DetalhesActivity extends AppCompatActivity {
 
     private ImageView imageView;
-    private TextView mDetNome, mDetCategoria, mDetIngredientes;
+    private TextView mDetNome, mDetCategoria, mDetIngredientes, mDetModoPreparo, mTempoTotal, mPorcoes ;
     private Button mVoltar, mFavorito;
     private Button mVisitarSite;
     private ReceitaDetalhes detalhes;
@@ -49,6 +50,9 @@ public class DetalhesActivity extends AppCompatActivity {
         mVoltar = findViewById(R.id.b_voltar_fav_off);
         mVisitarSite = findViewById(R.id.b_acessar_site);
         mFavorito = findViewById(R.id.ib_favorito);
+        mDetModoPreparo = findViewById(R.id.tv_modo_preparo);
+        mPorcoes = findViewById(R.id.tv_porcoes);
+        mTempoTotal = findViewById(R.id.tv_tempo_total);
 
 
         Yummly y = new Yummly(getResources().getString(R.string.appId),
@@ -84,6 +88,9 @@ public class DetalhesActivity extends AppCompatActivity {
 
         try {
             detalhes = y.getReceitaDetalhes(bundle.getString("id"));
+            mTempoTotal.setText(detalhes.getTotalTime());
+            mPorcoes.setText(detalhes.getYield());
+            mDetModoPreparo.setText(formataTextoModoPreparo(detalhes.getIngredientLines()));
 
         } catch (Exception e) {
             Log.i("RetornoApi", "Erro Detalhes " + e);
@@ -159,6 +166,22 @@ public class DetalhesActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public String formataTextoModoPreparo(List<String> list) {
+
+        StringBuilder builder = new StringBuilder();
+        int i = 0;
+        for(String s: list) {
+            builder.append("- ");
+            builder.append(s);
+            if (i < list.size()-1) {
+                builder.append("\n");
+            }
+            ++i;
+        }
+
+        return builder.toString();
     }
 
     @Override

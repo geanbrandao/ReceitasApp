@@ -71,14 +71,14 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/iv_det_receita_off"
                 android:layout_width="0dp"
                 android:layout_height="400dp"
-                android:scaleType="fitXY"
                 android:contentDescription="@string/s_img_receita"
+                android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -125,11 +125,24 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_det_nome_off" />
 
             <TextView
+                android:id="@+id/tv_modo_preparo_static"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Modo de Preparo"
+                android:textAllCaps="true"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_ingredientes"
+                app:layout_constraintStart_toStartOf="@+id/tv_ingredientes"
+                app:layout_constraintTop_toBottomOf="@+id/tv_ingredientes" />
+
+            <TextView
                 android:id="@+id/tv_ingredientes"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
                 android:background="@color/colorBackgroundCaixaTexto"
                 android:elevation="5dp"
                 android:fontFamily="sans-serif"
@@ -139,10 +152,85 @@
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textColor="@color/colorBlack"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/tv_ingredientes_static"
                 app:layout_constraintStart_toStartOf="@+id/tv_ingredientes_static"
                 app:layout_constraintTop_toBottomOf="@+id/tv_ingredientes_static" />
+
+            <TextView
+                android:id="@+id/tv_modo_preparo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorBackgroundCaixaTexto"
+                android:elevation="5dp"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="5dp"
+                android:padding="15dp"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_modo_preparo_static"
+                app:layout_constraintStart_toStartOf="@+id/tv_modo_preparo_static"
+                app:layout_constraintTop_toBottomOf="@+id/tv_modo_preparo_static" />
+
+            <TextView
+                android:id="@+id/tv_porcoes_static"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/s_porcoes"
+                android:textAllCaps="true"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_modo_preparo"
+                app:layout_constraintStart_toStartOf="@+id/tv_modo_preparo"
+                app:layout_constraintTop_toBottomOf="@+id/tv_modo_preparo" />
+
+
+            <TextView
+                android:id="@+id/tv_porcoes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorBackgroundCaixaTexto"
+                android:padding="10dp"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_porcoes_static"
+                app:layout_constraintStart_toStartOf="@+id/tv_porcoes_static"
+                app:layout_constraintTop_toBottomOf="@+id/tv_porcoes_static" />
+
+            <TextView
+                android:id="@+id/tv_tempo_total_static"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/s_tempo_total"
+                android:textAllCaps="true"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_porcoes"
+                app:layout_constraintStart_toStartOf="@+id/tv_porcoes"
+                app:layout_constraintTop_toBottomOf="@+id/tv_porcoes" />
+
+            <TextView
+                android:id="@+id/tv_tempo_total"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/colorBackgroundCaixaTexto"
+                android:padding="10dp"
+                android:text=""
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tv_tempo_total_static"
+                app:layout_constraintStart_toStartOf="@+id/tv_tempo_total_static"
+                app:layout_constraintTop_toBottomOf="@+id/tv_tempo_total_static" />
 
 
         </android.support.constraint.ConstraintLayout>

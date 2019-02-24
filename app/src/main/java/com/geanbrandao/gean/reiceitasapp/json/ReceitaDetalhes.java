@@ -11,16 +11,26 @@ public class ReceitaDetalhes {
     private List<Images> images;
     private String name;
     private Source source;
+    private List<String> ingredientLines;
 
     public ReceitaDetalhes() {
     }
 
-    public ReceitaDetalhes(String yield, String totalTime, List<Images> images, String name, Source source) {
+    public ReceitaDetalhes(String yield, String totalTime, List<Images> images, String name, Source source, List<String> ingredientLines) {
         this.yield = yield;
         this.totalTime = totalTime;
         this.images = images;
         this.name = name;
         this.source = source;
+        this.ingredientLines = ingredientLines;
+    }
+    
+    public List<String> getIngredientLines() {
+        return ingredientLines;
+    }
+
+    public void setIngredientLines(List<String> ingredientLines) {
+        this.ingredientLines = ingredientLines;
     }
 
     public String getYield() {

@@ -15,6 +15,8 @@
     <string name="s_sair">Sair</string>
     <string name="s_conta">Conta</string>
     <string name="s_favoritos">Receitas Favoritas</string>
+    <string name="s_porcoes">Quantidade de Porções</string>
+    <string name="s_tempo_total">Tempo Total de Preparo</string>
 
     <string name="title_activity_menu">MenuActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

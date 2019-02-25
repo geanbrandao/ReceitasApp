@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         // firebase
         mAuth = FirebaseAuth.getInstance();
 
-
         // id
         mSignInButton = findViewById(R.id.login_with_google);
 

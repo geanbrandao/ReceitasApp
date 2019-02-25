@@ -186,7 +186,7 @@ public class MenuActivity extends AppCompatActivity
         Intent i = new Intent(this, DetalhesActivity.class);
         i.putExtra("smallImageUrls", MelhoraImagem.alteraUrl(recipes.get(position).getSmallImageUrls().get(0)));
         //i.putExtra("sourceDisplayName", recipes.get(position).getSourceDisplayName());
-        i.putExtra("sourceDisplayName", recipes.get(position).getSourceDisplayName());
+        //i.putExtra("sourceDisplayName", recipes.get(position).getSourceDisplayName());
         i.putExtra("quantidadeIngredientes", recipes.get(position).getIngredients().size());
         int aux = 0;
         for (String s: recipes.get(position).getIngredients()) {
@@ -194,8 +194,8 @@ public class MenuActivity extends AppCompatActivity
             ++aux;
         }
         i.putExtra("id", recipes.get(position).getId());
-        i.putExtra("recipeName", recipes.get(position).getRecipeName());
-        i.putExtra("totalTimeInSeconds", recipes.get(position).getTotalTimeInSeconds());
+        //i.putExtra("recipeName", recipes.get(position).getRecipeName());
+        //i.putExtra("totalTimeInSeconds", recipes.get(position).getTotalTimeInSeconds());
         i.putExtra("rating", recipes.get(position).getRating());
         startActivity(i);
     }

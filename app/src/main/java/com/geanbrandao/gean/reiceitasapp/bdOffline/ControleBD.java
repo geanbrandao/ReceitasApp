@@ -20,7 +20,7 @@ public class ControleBD {
         banco = new CriarBD(context);
     }
 
-    public long insert(String idReceita, String ingredientes, String nomeReceita, String sourceDN, int rating, int totalTimeSeg, byte[] foto) {
+    public long insert(String idReceita, String ingredientes, String nomeReceita, String sourceDN, int rating, byte[] foto, String porcao, String preparo, String tempo) {
         ContentValues values = new ContentValues();
         long resultado;
 
@@ -31,8 +31,10 @@ public class ControleBD {
         values.put(CriarBD.NOME_RECEITA, nomeReceita);
         values.put(CriarBD.SOURCE_DISPLAY_NAME, sourceDN);
         values.put(CriarBD.RATING, rating);
-        values.put(CriarBD.TOTAL_TIME_IN_SECONDS, totalTimeSeg);
         values.put(CriarBD.FOTO, foto);
+        values.put(CriarBD.PORCAO, porcao);
+        values.put(CriarBD.PREPARO, preparo);
+        values.put(CriarBD.TEMPO_STRING, tempo);
         resultado = db.insert(CriarBD.TABELA_RECEITAS,null, values);
         db.close();
         return resultado;
@@ -41,7 +43,17 @@ public class ControleBD {
     public Cursor read(String id) {
         Cursor cursor;
         db = banco.getReadableDatabase();
-        cursor = db.query(CriarBD.TABELA_RECEITAS, new String[]{""+CriarBD.ID_RECEITA}, ""+CriarBD.ID_RECEITA+"= ?", new String[]{id}, null, null, null, null );
+        String[] colunas = new String[]{
+                CriarBD.ID_RECEITA,
+                CriarBD.SOURCE_DISPLAY_NAME,
+                CriarBD.NOME_RECEITA,
+                CriarBD.INGREDIENTES,
+                CriarBD.FOTO,
+                CriarBD.PORCAO,
+                CriarBD.PREPARO,
+                CriarBD.RATING,
+                CriarBD.TEMPO_STRING};
+        cursor = db.query(CriarBD.TABELA_RECEITAS, colunas, ""+CriarBD.ID_RECEITA+"= ?", new String[]{id}, null, null, null, null );
         if(cursor != null) {
             cursor.moveToFirst();
             Log.i("Database", "Retorno read, cursor nao nulo");
@@ -50,7 +62,24 @@ public class ControleBD {
         return cursor;
     }
 
+    public List<String> readIDs(){
+        Cursor cursor;
+        db = banco.getReadableDatabase();
+        cursor = db.query(CriarBD.TABELA_RECEITAS, new String[]{""+CriarBD.ID_RECEITA}, null, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            Log.i("Database", "Retorno read, cursor nao nulo");
+        }
+        List<String> ids = new ArrayList<>();
+        for (int i = 0; i < cursor.getCount(); ++i) {
+            ids.add(cursor.getString(0));
+            cursor.moveToNext();
+        }
+        db.close();
+        return ids;
+    }
 
+    /*
     public List<ReceitasFavoritas> readAll() {
         Cursor cursor;
         db = banco.getReadableDatabase();
@@ -61,8 +90,7 @@ public class ControleBD {
                 ""+CriarBD.INGREDIENTES,
                 ""+CriarBD.RATING,
                 ""+CriarBD.NOME_RECEITA,
-                ""+CriarBD.SOURCE_DISPLAY_NAME,
-                ""+CriarBD.TOTAL_TIME_IN_SECONDS
+                ""+CriarBD.SOURCE_DISPLAY_NAME
         };
 
         cursor = db.query(CriarBD.TABELA_RECEITAS, colunas, null, null, null, null, null, null );
@@ -94,7 +122,8 @@ public class ControleBD {
         }
         db.close();
         return favoritas;
-    }
+    }*/
+
     public long deletaReceita(String id){
         StringBuilder builder = new StringBuilder();
         builder.append(CriarBD.ID_RECEITA);

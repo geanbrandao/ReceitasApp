@@ -13,9 +13,11 @@ public class CriarBD extends SQLiteOpenHelper {
     protected static final String ID = "id";
     protected static final String ID_RECEITA = "id_receita";
     protected static final String INGREDIENTES = "ingredients";
+    protected static final String PREPARO = "preparo";
+    protected static final String TEMPO_STRING = "tempoString";
+    protected static final String PORCAO = "porcao";
     protected static final String SOURCE_DISPLAY_NAME = "sourceDisplayName";
     protected static final String NOME_RECEITA = "recipeName";
-    protected static final String TOTAL_TIME_IN_SECONDS = "totalTimeInSeconds";
     protected static final String RATING = "rating";
     protected static final String FOTO = "foto";
     protected static final int VERSAO = 1;
@@ -38,17 +40,20 @@ public class CriarBD extends SQLiteOpenHelper {
         sql.append(" text,");
         sql.append(INGREDIENTES);
         sql.append(" text,");
+        sql.append(PREPARO);
+        sql.append(" text,");
+        sql.append(TEMPO_STRING);
+        sql.append(" text,");
+        sql.append(PORCAO);
+        sql.append(" text,");
         sql.append(SOURCE_DISPLAY_NAME);
         sql.append(" text,");
         sql.append(NOME_RECEITA);
         sql.append(" text,");
-        sql.append(TOTAL_TIME_IN_SECONDS);
-        sql.append(" integer,");
         sql.append(RATING);
         sql.append(" integer,");
         sql.append(FOTO);
         sql.append(" blob)");
-
 
 //        String sql = "CREATE TABLE "+TABELA_RECEITAS+" ("
 //                + ID + " integer primary key autoincrement,"

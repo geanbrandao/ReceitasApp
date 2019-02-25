@@ -2,13 +2,16 @@ package com.geanbrandao.gean.reiceitasapp.helper;
 
 public class ReceitasFavoritas {
     /*
-            ""+CriarBD.ID_RECEITA,
-            ""+CriarBD.FOTO,
-            ""+CriarBD.INGREDIENTES,
-            ""+CriarBD.RATING,
-            ""+CriarBD.NOME_RECEITA,
-            ""+CriarBD.SOURCE_DISPLAY_NAME,
-            ""+CriarBD.TOTAL_TIME_IN_SECONDS
+                CriarBD.ID_RECEITA,
+                CriarBD.TOTAL_TIME_IN_SECONDS,
+                CriarBD.SOURCE_DISPLAY_NAME,
+                CriarBD.NOME_RECEITA,
+                CriarBD.INGREDIENTES,
+                CriarBD.FOTO,
+                CriarBD.PORCAO,
+                CriarBD.PREPARO,
+                CriarBD.RATING,
+                CriarBD.TEMPO_STRING
     */
     private String id;
     private byte[] foto;
@@ -16,20 +19,48 @@ public class ReceitasFavoritas {
     private int rating;
     private String nome;
     private String nomeFonte;
-    private int TotalTimeSeg;
+    private String porcao;
+    private String preparo;
+    private String tempo;
 
     public ReceitasFavoritas() {
 
     }
 
-    public ReceitasFavoritas(String id, byte[] foto, String ingredientes, int rating, String nome, String nomeFonte, int totalTimeSeg) {
+    public ReceitasFavoritas(String id, byte[] foto, String ingredientes, int rating, String nome, String nomeFonte, String porcao, String preparo, String tempo) {
         this.id = id;
         this.foto = foto;
         this.ingredientes = ingredientes;
         this.rating = rating;
         this.nome = nome;
         this.nomeFonte = nomeFonte;
-        TotalTimeSeg = totalTimeSeg;
+        this.porcao = porcao;
+        this.preparo = preparo;
+        this.tempo = tempo;
+    }
+
+    public String getPorcao() {
+        return porcao;
+    }
+
+    public void setPorcao(String porcao) {
+        this.porcao = porcao;
+    }
+
+    public String getPreparo() {
+        return preparo;
+    }
+
+    public void setPreparo(String preparo) {
+        this.preparo = preparo;
+    }
+
+    public String getTempo() {
+        return tempo;
+    }
+
+    public void setTempo(String tempo) {
+        this.tempo = tempo;
     }
 
     public String getId() {
@@ -80,11 +111,4 @@ public class ReceitasFavoritas {
         this.nomeFonte = nomeFonte;
     }
 
-    public int getTotalTimeSeg() {
-        return TotalTimeSeg;
-    }
-
-    public void setTotalTimeSeg(int totalTimeSeg) {
-        TotalTimeSeg = totalTimeSeg;
-    }
 }

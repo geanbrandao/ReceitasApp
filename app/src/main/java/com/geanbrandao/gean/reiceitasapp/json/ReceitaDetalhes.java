@@ -5,26 +5,45 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReceitaDetalhes {
-
+    private String id;
     private String yield;
     private String totalTime;
     private List<Images> images;
     private String name;
     private Source source;
     private List<String> ingredientLines;
+    private int rating;
 
     public ReceitaDetalhes() {
     }
 
-    public ReceitaDetalhes(String yield, String totalTime, List<Images> images, String name, Source source, List<String> ingredientLines) {
+    public ReceitaDetalhes(String id, String yield, String totalTime, List<Images> images, String name, Source source, List<String> ingredientLines, int rating) {
+        this.id = id;
         this.yield = yield;
         this.totalTime = totalTime;
         this.images = images;
         this.name = name;
         this.source = source;
         this.ingredientLines = ingredientLines;
+        this.rating = rating;
     }
-    
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
     public List<String> getIngredientLines() {
         return ingredientLines;
     }

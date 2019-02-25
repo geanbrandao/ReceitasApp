@@ -60,19 +60,35 @@ public class FavoritosActivity extends AppCompatActivity implements SwipeRefresh
         super.finish();
     }
 
-    /*
-            ""+CriarBD.ID_RECEITA,
-            ""+CriarBD.FOTO,
-            ""+CriarBD.INGREDIENTES,
-            ""+CriarBD.RATING,
-            ""+CriarBD.NOME_RECEITA,
-            ""+CriarBD.SOURCE_DISPLAY_NAME,
-            ""+CriarBD.TOTAL_TIME_IN_SECONDS
-    */
-
     public void separaDados(){
+         /*
+                CriarBD.ID_RECEITA,
+                CriarBD.TOTAL_TIME_IN_SECONDS,
+                CriarBD.SOURCE_DISPLAY_NAME,
+                CriarBD.NOME_RECEITA,
+                CriarBD.INGREDIENTES,
+                CriarBD.FOTO,
+                CriarBD.PORCAO,
+                CriarBD.PREPARO,
+                CriarBD.RATING,
+                CriarBD.TEMPO_STRING
+        */
         crud = new ControleBD(getBaseContext());
-        receitas = crud.readAll();
+        List<String> ids;
+        ids = crud.readIDs();
+        for(String s: ids) {
+            Cursor cursor = crud.read(s);
+            ReceitasFavoritas fav = new ReceitasFavoritas();
+            fav.setId(cursor.getString(0));
+            fav.setNomeFonte(cursor.getString(1));
+            fav.setNome(cursor.getString(2));
+            fav.setIngredientes(cursor.getString(3));
+            fav.setFoto(cursor.getBlob(4));
+            fav.setPorcao(cursor.getString(5));
+            fav.setPreparo(cursor.getString(6));
+            fav.setRating(cursor.getInt(7));
+            fav.setTempo(cursor.getString(8));
+        }
     }
 
     @Override
@@ -93,7 +109,7 @@ public class FavoritosActivity extends AppCompatActivity implements SwipeRefresh
         i.putExtra("ingredientes", receitas.get(position).getIngredientes());
         i.putExtra("id", receitas.get(position).getId());
         i.putExtra("nome", receitas.get(position).getNome());
-        i.putExtra("totalTimeSeg", receitas.get(position).getTotalTimeSeg());
+        //i.putExtra("totalTimeSeg", receitas.get(position).getTotalTimeSeg());
         i.putExtra("rating", receitas.get(position).getRating());
         startActivity(i);
     }

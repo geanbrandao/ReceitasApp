@@ -20,6 +20,7 @@ import com.geanbrandao.gean.reiceitasapp.R;
 import com.geanbrandao.gean.reiceitasapp.bdOffline.ControleBD;
 import com.geanbrandao.gean.reiceitasapp.conexao.Yummly;
 import com.geanbrandao.gean.reiceitasapp.helper.MelhoraImagem;
+import com.geanbrandao.gean.reiceitasapp.helper.ReceitasFavoritas;
 import com.geanbrandao.gean.reiceitasapp.json.ReceitaDetalhes;
 
 import java.io.ByteArrayOutputStream;
@@ -66,8 +67,6 @@ public class DetalhesActivity extends AppCompatActivity {
         if (bundle != null) {
 
             idReceitaAtual = bundle.getString("id");
-            mDetNome.setText(bundle.getString("recipeName"));
-            mDetCategoria.setText(bundle.getString("sourceDisplayName"));
             StringBuilder builder = new StringBuilder();
             for (int aux = 0; aux < bundle.getInt("quantidadeIngredientes"); aux++) {
                 builder.append("- ");
@@ -87,11 +86,13 @@ public class DetalhesActivity extends AppCompatActivity {
 
 
         try {
-            detalhes = y.getReceitaDetalhes(bundle.getString("id"));
+            detalhes = y.getReceitaDetalhes(idReceitaAtual);
+
             mTempoTotal.setText(detalhes.getTotalTime());
             mPorcoes.setText(detalhes.getYield());
             mDetModoPreparo.setText(formataTextoModoPreparo(detalhes.getIngredientLines()));
-
+            mDetNome.setText(detalhes.getName());
+            mDetCategoria.setText(detalhes.getSource().getSourceDisplayName());
         } catch (Exception e) {
             Log.i("RetornoApi", "Erro Detalhes " + e);
             e.printStackTrace();
@@ -125,6 +126,54 @@ public class DetalhesActivity extends AppCompatActivity {
         });
 
         mFavorito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // verifica se ja eh favorito
+                crud = new ControleBD(getBaseContext());
+                cursor = crud.read(idReceitaAtual);
+                if (cursor.getCount() > 0) {
+                    // vai marcar a receita como favorita
+                    Log.i("Database", "Achou o id no database");
+                    long res = crud.deletaReceita(idReceitaAtual);
+                    if(res != -1) {
+                        Log.i("Database", "Favorito deletado do banco de dados");
+                        mFavorito.setBackground(getDrawable(R.drawable.ic_action_star_border_black));
+                    } else {
+                        mFavorito.setBackground(getDrawable(R.drawable.ic_action_star_yellow));
+                        Log.i("Database", "Falha ao deletar favorito");
+                    }
+
+                } else {
+                    // pega a imagem e transforma em byte[]
+                    Drawable drawable = imageView.getDrawable();
+                    Bitmap bitmap = MelhoraImagem.drawableToBitmap(drawable);
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    byte[] byteArray = stream.toByteArray();
+                    crud = new ControleBD(getBaseContext());
+                    long resultado = crud.insert(idReceitaAtual,
+                            listaIngredientesFormatada,
+                            mDetNome.getText().toString(),
+                            mDetCategoria.getText().toString(),
+                            detalhes.getRating(),
+                            byteArray,
+                            mPorcoes.getText().toString(),
+                            mDetModoPreparo.getText().toString(),
+                            mTempoTotal.getText().toString()
+                    );
+
+                    if (resultado != -1) {
+                        Log.i("Database", "favorito inserido");
+                        mFavorito.setBackground(getDrawable(R.drawable.ic_action_star_yellow));
+                    } else {
+                        Log.i("Database", "falha ao inserir favorito");
+                    }
+                }
+            }
+        });
+
+        /*mFavorito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //mFavorito.setBackground(getDrawable(R.drawable.ic_action_star_yellow));
@@ -165,7 +214,7 @@ public class DetalhesActivity extends AppCompatActivity {
                 }
 
             }
-        });
+        });*/
     }
 
     public String formataTextoModoPreparo(List<String> list) {

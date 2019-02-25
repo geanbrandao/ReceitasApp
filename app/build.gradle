@@ -25,9 +25,10 @@ dependencies {
 
     //google
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
-    implementation 'com.google.http-client:google-http-client-jackson:1.23.0'
-    implementation 'com.google.http-client:google-http-client-jackson2:1.23.0'
-    implementation 'com.google.http-client:google-http-client-gson:1.23.0'
+
+    //implementation 'com.google.http-client:google-http-client-jackson:1.23.0'
+    //implementation 'com.google.http-client:google-http-client-jackson2:1.23.0'
+    //implementation 'com.google.http-client:google-http-client-gson:1.23.0'
     // json
     implementation 'com.fasterxml.jackson.core:jackson-core:2.5.3'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.5.3'

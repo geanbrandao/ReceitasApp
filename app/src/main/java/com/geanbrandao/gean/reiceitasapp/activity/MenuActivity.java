@@ -120,15 +120,12 @@ public class MenuActivity extends AppCompatActivity
     }
 
     private void getReceitas() {
-//        swipeRefreshLayout.setRefreshing(true);
-//        swipeRefreshLayout.setRefreshing(false);
 
-        // implementa as progressBar para avisar o usuario enquanto faz a task de rede
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -136,44 +133,22 @@ public class MenuActivity extends AppCompatActivity
         }
     }
 
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         switch (id) {
-//            case R.id.menu_favoritos:
-//                startActivity(new Intent(this, FavoritosActivity.class));
-//                break;
             case R.id.menu_sair:
                 mAuth.signOut();
                 onResume();
                 break;
+            case R.id.menu_favoritos:
+                startActivity(new Intent(this, FavoritosActivity.class));
+                break;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -185,8 +160,6 @@ public class MenuActivity extends AppCompatActivity
         Log.i("RespostaRecycler", " = "+ recipes.get(position).getRecipeName());
         Intent i = new Intent(this, DetalhesActivity.class);
         i.putExtra("smallImageUrls", MelhoraImagem.alteraUrl(recipes.get(position).getSmallImageUrls().get(0)));
-        //i.putExtra("sourceDisplayName", recipes.get(position).getSourceDisplayName());
-        //i.putExtra("sourceDisplayName", recipes.get(position).getSourceDisplayName());
         i.putExtra("quantidadeIngredientes", recipes.get(position).getIngredients().size());
         int aux = 0;
         for (String s: recipes.get(position).getIngredients()) {
@@ -194,8 +167,6 @@ public class MenuActivity extends AppCompatActivity
             ++aux;
         }
         i.putExtra("id", recipes.get(position).getId());
-        //i.putExtra("recipeName", recipes.get(position).getRecipeName());
-        //i.putExtra("totalTimeInSeconds", recipes.get(position).getTotalTimeInSeconds());
         i.putExtra("rating", recipes.get(position).getRating());
         startActivity(i);
     }

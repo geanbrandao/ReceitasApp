@@ -130,7 +130,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
                 android:background="@color/colorBackgroundCaixaTexto"
                 android:elevation="5dp"
                 android:fontFamily="sans-serif"
@@ -140,10 +139,99 @@
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textColor="@color/colorBlack"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/tv_ingredientes_static"
                 app:layout_constraintStart_toStartOf="@+id/tv_ingredientes_static"
                 app:layout_constraintTop_toBottomOf="@+id/tv_ingredientes_static" />
+
+            <TextView
+                android:id="@+id/tv_modo_preparo_static_off"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/s_modo_preparo"
+                android:textAllCaps="true"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_ingredientes_off"
+                app:layout_constraintStart_toStartOf="@+id/tv_ingredientes_off"
+                app:layout_constraintTop_toBottomOf="@+id/tv_ingredientes_off" />
+
+            <TextView
+                android:id="@+id/tv_modo_preparo_off"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorBackgroundCaixaTexto"
+                android:elevation="5dp"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="5dp"
+                android:padding="15dp"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_modo_preparo_static_off"
+                app:layout_constraintStart_toStartOf="@+id/tv_modo_preparo_static_off"
+                app:layout_constraintTop_toBottomOf="@+id/tv_modo_preparo_static_off" />
+
+            <TextView
+                android:id="@+id/tv_porcoes_static_off"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/s_porcoes"
+                android:textAllCaps="true"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_modo_preparo_off"
+                app:layout_constraintStart_toStartOf="@+id/tv_modo_preparo_off"
+                app:layout_constraintTop_toBottomOf="@+id/tv_modo_preparo_off" />
+
+
+            <TextView
+                android:id="@+id/tv_porcoes_off"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorBackgroundCaixaTexto"
+                android:padding="10dp"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_porcoes_static_off"
+                app:layout_constraintStart_toStartOf="@+id/tv_porcoes_static_off"
+                app:layout_constraintTop_toBottomOf="@+id/tv_porcoes_static_off" />
+
+            <TextView
+                android:id="@+id/tv_tempo_total_static_off"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/s_tempo_total"
+                android:textAllCaps="true"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_porcoes_off"
+                app:layout_constraintStart_toStartOf="@+id/tv_porcoes_off"
+                app:layout_constraintTop_toBottomOf="@+id/tv_porcoes_off" />
+
+            <TextView
+                android:id="@+id/tv_tempo_total_off"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/colorBackgroundCaixaTexto"
+                android:padding="10dp"
+                android:text=""
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tv_tempo_total_static_off"
+                app:layout_constraintStart_toStartOf="@+id/tv_tempo_total_static_off"
+                app:layout_constraintTop_toBottomOf="@+id/tv_tempo_total_static_off" />
 
 
         </android.support.constraint.ConstraintLayout>

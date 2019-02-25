@@ -12,9 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.geanbrandao.gean.reiceitasapp.R;
-import com.geanbrandao.gean.reiceitasapp.activity.FavoritosActivity;
 import com.geanbrandao.gean.reiceitasapp.helper.ReceitasFavoritas;
-import com.geanbrandao.gean.reiceitasapp.json.Recipe;
 
 import java.util.List;
 

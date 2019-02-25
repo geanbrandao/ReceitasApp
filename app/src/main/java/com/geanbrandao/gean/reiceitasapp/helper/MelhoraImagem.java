@@ -5,15 +5,10 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
-import android.widget.ImageView;
-
-import java.io.ByteArrayOutputStream;
 
 public class MelhoraImagem {
 
-
-
-    public static String alteraUrl(String url){
+    public static String alteraUrl(String url) {
         String[] textoSeparado = url.split("=");
         StringBuilder builder = new StringBuilder();
         builder.append(textoSeparado[0]);

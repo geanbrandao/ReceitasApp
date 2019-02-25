@@ -52,7 +52,7 @@ public class ReceitasAdapter extends RecyclerView.Adapter<ReceitasAdapter.MyView
 
 
     private void pegarImgReceita(MyViewHolder myViewHolder, Recipe recipe) {
-        if(!TextUtils.isEmpty(recipe.getSmallImageUrls().get(0))){
+        if (!TextUtils.isEmpty(recipe.getSmallImageUrls().get(0))) {
             Glide.with(mContext).load(recipe.getSmallImageUrls().get(0))
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(myViewHolder.imageView);

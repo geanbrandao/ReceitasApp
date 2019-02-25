@@ -1,18 +1,7 @@
 package com.geanbrandao.gean.reiceitasapp.helper;
 
 public class ReceitasFavoritas {
-    /*
-                CriarBD.ID_RECEITA,
-                CriarBD.TOTAL_TIME_IN_SECONDS,
-                CriarBD.SOURCE_DISPLAY_NAME,
-                CriarBD.NOME_RECEITA,
-                CriarBD.INGREDIENTES,
-                CriarBD.FOTO,
-                CriarBD.PORCAO,
-                CriarBD.PREPARO,
-                CriarBD.RATING,
-                CriarBD.TEMPO_STRING
-    */
+
     private String id;
     private byte[] foto;
     private String ingredientes;

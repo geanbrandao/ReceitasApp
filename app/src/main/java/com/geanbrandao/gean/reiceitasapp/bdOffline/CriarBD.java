@@ -24,8 +24,8 @@ public class CriarBD extends SQLiteOpenHelper {
 
     protected static final int VERSAO = 1;
 
-    public CriarBD(Context context){
-        super(context, NOME_BANCO,null,VERSAO);
+    public CriarBD(Context context) {
+        super(context, NOME_BANCO, null, VERSAO);
     }
 
 
@@ -59,19 +59,10 @@ public class CriarBD extends SQLiteOpenHelper {
         sql.append(SITE);
         sql.append(" text)");
 
-//        String sql = "CREATE TABLE "+TABELA_RECEITAS+" ("
-//                + ID + " integer primary key autoincrement,"
-//                + ID_RECEITA + " text,"
-//                + INGREDIENTES + " text,"
-//                + SOURCE_DISPLAY_NAME + " text,"
-//                + NOME_RECEITA + " text,"
-//                + TOTAL_TIME_IN_SECONDS + " integer,"
-//                + RATING + " integer"
-//                + ")";
         try {
             db.execSQL(sql.toString()); // cria a tabela
         } catch (Exception e) {
-            Log.i("Database", "Falha ao criar o banco de dados"+e);
+            Log.i("Database", "Falha ao criar o banco de dados" + e);
         }
     }
 

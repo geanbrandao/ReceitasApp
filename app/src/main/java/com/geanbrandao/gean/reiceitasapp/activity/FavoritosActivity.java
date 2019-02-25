@@ -25,7 +25,6 @@ public class FavoritosActivity extends AppCompatActivity implements SwipeRefresh
     private RecyclerView recyclerView;
     private List<ReceitasFavoritas> receitas = new ArrayList<>();
     private ControleBD crud;
-    private Cursor cursor;
     private Button mVoltar;
     private FavoritasAdapter adapter;
     private SwipeRefreshLayout swipeRefreshLayout;

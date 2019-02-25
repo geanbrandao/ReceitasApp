@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
 
-/**
- * A recipe search result containing matches, counts, etc.
- */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResultadoFeed {
 

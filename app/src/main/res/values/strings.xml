@@ -19,6 +19,9 @@
     <string name="s_porcoes">Quantidade de Porções</string>
     <string name="s_tempo_total">Tempo Total de Preparo</string>
     <string name="s_sem_conexao">Sem conexão com a internet</string>
+    <string name="s_yummly">Yummly</string>
+    <string name="s_sobre">Informações da API</string>
+
 
     <string name="title_activity_menu">MenuActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -26,7 +29,6 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
 
 </resources>

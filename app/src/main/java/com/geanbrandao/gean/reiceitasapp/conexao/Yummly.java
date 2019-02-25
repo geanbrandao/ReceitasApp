@@ -93,7 +93,6 @@ public class Yummly {
         } catch (InterruptedException e) {
             Log.i("RetornoApi", "LeValoresTask Erro: "+e);
         }
-        //Log.i("RetornoApi", "LeValoresTask: "+resultDetalhes.getName());
 		in.close();
 		return resultDetalhes;
 	}

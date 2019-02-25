@@ -23,10 +23,12 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.geanbrandao.gean.reiceitasapp.InfoActivity;
 import com.geanbrandao.gean.reiceitasapp.R;
 import com.geanbrandao.gean.reiceitasapp.adapter.ReceitasAdapter;
 import com.geanbrandao.gean.reiceitasapp.conexao.Yummly;
 import com.geanbrandao.gean.reiceitasapp.helper.MelhoraImagem;
+import com.geanbrandao.gean.reiceitasapp.helper.ValoresEstaticos;
 import com.geanbrandao.gean.reiceitasapp.json.Recipe;
 import com.geanbrandao.gean.reiceitasapp.json.ResultadoFeed;
 import com.google.firebase.auth.FirebaseAuth;
@@ -82,13 +84,12 @@ public class MenuActivity extends AppCompatActivity
         Log.i("RetornoApi", "antes do try ");
         try {
             result = y.search();
-            //Log.i("RetornoApi", "entrou no try "+result.getMatches().size());
             for (Recipe recipe : result.getMatches()) {
                 String url = recipe.getSmallImageUrls().get(0);
                 recipe.getSmallImageUrls().set(0, MelhoraImagem.alteraUrl(url));
                 recipes.add(recipe);
-                //Log.i("RetornoApi",recipe.getRecipeName()+" - "+recipe.getId()+" - "+recipe.getSourceDisplayName());
             }
+            ValoresEstaticos.attribution = result.getAttribution();
 
         } catch (Exception e) {
             Log.i("RetornoApi", "Erro "+e);
@@ -146,6 +147,8 @@ public class MenuActivity extends AppCompatActivity
             case R.id.menu_favoritos:
                 startActivity(new Intent(this, FavoritosActivity.class));
                 break;
+            case R.id.menu_info:
+                startActivity(new Intent(this, InfoActivity.class));
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

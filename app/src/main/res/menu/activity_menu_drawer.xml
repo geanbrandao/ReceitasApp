@@ -18,5 +18,14 @@
                 android:title="@string/s_sair" />
         </menu>
     </item>
+    <item android:title="@string/s_yummly">
+        <menu>
+            <item
+                android:id="@+id/menu_info"
+                android:icon="@drawable/ic_action_info"
+                android:title="@string/s_sobre" />
+        </menu>
+    </item>
+
 
 </menu>

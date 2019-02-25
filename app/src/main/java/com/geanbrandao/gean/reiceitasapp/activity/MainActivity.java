@@ -104,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
                             // If sign in fails, display a message to the user.
                             Log.i("firebaseAuthWithGoogle", "signInWithCredential:failure", task.getException());
                             Toast.makeText(MainActivity.this, "O login com o Google falhou!", Toast.LENGTH_SHORT).show();
-                            //Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
                         }
                     }
                 });

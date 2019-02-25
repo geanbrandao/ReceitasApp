@@ -1,33 +1,32 @@
-
 package com.geanbrandao.gean.reiceitasapp.json;
 
 public class Source {
-	
-	private String sourceDisplayName;
-	private String sourceRecipeUrl;
-	private String sourceSiteUrl;
-	
-	public String getSourceDisplayName() {
-		return this.sourceDisplayName;
-	}
 
-	public void setSourceDisplayName(String sourceDisplayName) {
-		this.sourceDisplayName = sourceDisplayName;
-	}
+    private String sourceDisplayName;
+    private String sourceRecipeUrl;
+    private String sourceSiteUrl;
 
-	public String getSourceRecipeUrl() {
-		return this.sourceRecipeUrl;
-	}
+    public String getSourceDisplayName() {
+        return this.sourceDisplayName;
+    }
 
-	public void setSourceRecipeUrl(String sourceRecipeUrl) {
-		this.sourceRecipeUrl = sourceRecipeUrl;
-	}
+    public void setSourceDisplayName(String sourceDisplayName) {
+        this.sourceDisplayName = sourceDisplayName;
+    }
 
-	public String getSourceSiteUrl() {
-		return this.sourceSiteUrl;
-	}
+    public String getSourceRecipeUrl() {
+        return this.sourceRecipeUrl;
+    }
 
-	public void setSourceSiteUrl(String sourceSiteUrl) {
-		this.sourceSiteUrl = sourceSiteUrl;
-	}
+    public void setSourceRecipeUrl(String sourceRecipeUrl) {
+        this.sourceRecipeUrl = sourceRecipeUrl;
+    }
+
+    public String getSourceSiteUrl() {
+        return this.sourceSiteUrl;
+    }
+
+    public void setSourceSiteUrl(String sourceSiteUrl) {
+        this.sourceSiteUrl = sourceSiteUrl;
+    }
 }

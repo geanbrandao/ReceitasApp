@@ -22,12 +22,13 @@ public class ReceitasFavoritas {
     private String porcao;
     private String preparo;
     private String tempo;
+    private String site;
 
     public ReceitasFavoritas() {
 
     }
 
-    public ReceitasFavoritas(String id, byte[] foto, String ingredientes, int rating, String nome, String nomeFonte, String porcao, String preparo, String tempo) {
+    public ReceitasFavoritas(String id, byte[] foto, String ingredientes, int rating, String nome, String nomeFonte, String porcao, String preparo, String tempo, String site) {
         this.id = id;
         this.foto = foto;
         this.ingredientes = ingredientes;
@@ -37,6 +38,15 @@ public class ReceitasFavoritas {
         this.porcao = porcao;
         this.preparo = preparo;
         this.tempo = tempo;
+        this.site = site;
+    }
+
+    public String getSite() {
+        return site;
+    }
+
+    public void setSite(String site) {
+        this.site = site;
     }
 
     public String getPorcao() {

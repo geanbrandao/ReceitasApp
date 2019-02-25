@@ -20,6 +20,8 @@ public class CriarBD extends SQLiteOpenHelper {
     protected static final String NOME_RECEITA = "recipeName";
     protected static final String RATING = "rating";
     protected static final String FOTO = "foto";
+    protected static final String SITE = "site";
+
     protected static final int VERSAO = 1;
 
     public CriarBD(Context context){
@@ -53,7 +55,9 @@ public class CriarBD extends SQLiteOpenHelper {
         sql.append(RATING);
         sql.append(" integer,");
         sql.append(FOTO);
-        sql.append(" blob)");
+        sql.append(" blob,");
+        sql.append(SITE);
+        sql.append(" text)");
 
 //        String sql = "CREATE TABLE "+TABELA_RECEITAS+" ("
 //                + ID + " integer primary key autoincrement,"

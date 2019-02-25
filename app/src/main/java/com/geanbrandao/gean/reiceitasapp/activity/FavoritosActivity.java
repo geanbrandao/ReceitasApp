@@ -78,13 +78,14 @@ public class FavoritosActivity extends AppCompatActivity implements SwipeRefresh
             fav.setPreparo(cursor.getString(6));
             fav.setRating(cursor.getInt(7));
             fav.setTempo(cursor.getString(8));
+            fav.setSite(cursor.getString(9));
             receitas.add(fav);
         }
     }
 
     @Override
     public void onRefresh() {
-
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override

@@ -81,8 +81,7 @@ public class DetalhesActivity extends AppCompatActivity {
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imageView);
         }
-//        Log.i("bundle", "limpou o bundle detalhes");
-//        bundle.clear();
+
 
 
         try {
@@ -160,7 +159,8 @@ public class DetalhesActivity extends AppCompatActivity {
                             byteArray,
                             mPorcoes.getText().toString(),
                             mDetModoPreparo.getText().toString(),
-                            mTempoTotal.getText().toString()
+                            mTempoTotal.getText().toString(),
+                            detalhes.getSource().getSourceRecipeUrl()
                     );
 
                     if (resultado != -1) {
@@ -173,48 +173,6 @@ public class DetalhesActivity extends AppCompatActivity {
             }
         });
 
-        /*mFavorito.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //mFavorito.setBackground(getDrawable(R.drawable.ic_action_star_yellow));
-                cursor = crud.read(idReceitaAtual);
-                if (cursor.getCount() < 1) { // se não estiver no bd marca como favorito
-                    // insere no bd
-                    Drawable drawable = imageView.getDrawable();
-                    Bitmap bitmap =  MelhoraImagem.drawableToBitmap(drawable);
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                    byte[] byteArray = stream.toByteArray();
-                    long resultado = crud.insert(idReceitaAtual,
-                            listaIngredientesFormatada,
-                            bundle.getString("recipeName"),
-                            bundle.getString("sourceDisplayName"),
-                            bundle.getInt("rating"),
-                            bundle.getInt("totalTimeInSeconds"),
-                            byteArray);
-                    if (resultado == -1) {
-                        Log.i("Database", "Falha ao inserir favorito");
-                        Toast.makeText(DetalhesActivity.this, "Não foi possivel marcar como favorito", Toast.LENGTH_SHORT).show();
-                        mFavorito.setBackground(getDrawable(R.drawable.ic_action_star_border_black));
-                    } else {
-                        Log.i("Database", "favorito marcado");
-                        mFavorito.setBackground(getDrawable(R.drawable.ic_action_star_yellow));
-                    }
-                } else {
-                    mFavorito.setBackground(getDrawable(R.drawable.ic_action_star_border_black));
-                    Log.i("Database", "Recipe deixou de ser favorita");
-
-                    long result = crud.deletaReceita(idReceitaAtual);
-                    if(result == -1) {
-                        Log.i("Database", "Não conseguiu deletar");
-                    } else {
-                        Log.i("Database", "dado deletado");
-                    }
-                    // deleta
-                }
-
-            }
-        });*/
     }
 
     public String formataTextoModoPreparo(List<String> list) {

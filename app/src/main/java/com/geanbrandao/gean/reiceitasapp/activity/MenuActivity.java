@@ -173,7 +173,7 @@ public class MenuActivity extends AppCompatActivity
 
     @Override
     public void onRefresh() {
-
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override

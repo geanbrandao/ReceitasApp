@@ -1,10 +1,17 @@
 package com.geanbrandao.gean.reiceitasapp.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -44,7 +51,7 @@ public class DetalhesFavoritasActivity extends AppCompatActivity {
         // pega as informacoes da activity anterior
         bundle = getIntent().getExtras();
         if (bundle != null) {
-           idReceitaFavorita = bundle.getString("id");
+            idReceitaFavorita = bundle.getString("id");
         }
         // carrega dados
         crud = new ControleBD(getBaseContext());
@@ -59,6 +66,7 @@ public class DetalhesFavoritasActivity extends AppCompatActivity {
         favoritas.setPreparo(cursor.getString(6));
         favoritas.setRating(cursor.getInt(7));
         favoritas.setTempo(cursor.getString(8));
+        favoritas.setSite(cursor.getString(9));
 
         mDetCategoria.setText(favoritas.getNomeFonte());
         mDetNome.setText(favoritas.getNome());
@@ -86,11 +94,35 @@ public class DetalhesFavoritasActivity extends AppCompatActivity {
                 }
             }
         });
+
+        mSite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo netInfo = conMgr.getActiveNetworkInfo();
+                if (netInfo == null) {
+
+                    new AlertDialog.Builder(DetalhesFavoritasActivity.this)
+                            .setTitle(getResources().getString(R.string.app_name))
+                            .setMessage(getResources().getString(R.string.s_sem_conexao))
+                            .setPositiveButton("OK", null).show();
+                } else {
+                    if (favoritas.getSite() != null) {
+                        Log.i("Site", " site "+favoritas.getSite());
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse(favoritas.getSite()));
+                        startActivity(i);
+                    } else {
+                        Log.i("Site", " site "+favoritas.getSite());
+                    }
+                }
+            }
+        });
     }
 
     private void pegarImgReceita(byte[] foto) {
-        if(foto!=null){
-            Bitmap raw  = BitmapFactory.decodeByteArray(foto,0,foto.length);
+        if (foto != null) {
+            Bitmap raw = BitmapFactory.decodeByteArray(foto, 0, foto.length);
             imageView.setImageBitmap(raw);
         }
     }
@@ -98,7 +130,7 @@ public class DetalhesFavoritasActivity extends AppCompatActivity {
 
     @Override
     public void finish() {
-        if(!ehFavorito){
+        if (!ehFavorito) {
             crud.deletaReceita(idReceitaFavorita);
         }
         super.finish();

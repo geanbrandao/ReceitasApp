@@ -58,7 +58,7 @@ public class ReceitasAdapter extends RecyclerView.Adapter<ReceitasAdapter.MyView
                     .into(myViewHolder.imageView);
             Log.i("ImagemReceita", "Conseguiu pegar a url da img da recipe.");
         } else {
-            myViewHolder.imageView.setImageResource(R.drawable.img_padrao);
+            myViewHolder.imageView.setImageResource(R.drawable.fundo);
             Log.i("ImagemReceita", "Não conseguiu pegar a url");
         }
     }

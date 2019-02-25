@@ -39,7 +39,7 @@ public class Yummly {
         mAppKey = appKey;
     }
 
-    public ResultadoFeed search() throws IOException {
+    public ResultadoFeed search(int quantidade) throws IOException {
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("recipes");
@@ -49,8 +49,12 @@ public class Yummly {
         stringBuilder.append("&");
         stringBuilder.append("_app_key=");
         stringBuilder.append(mAppKey);
+        stringBuilder.append("&maxResult=5");
+        if(quantidade > 0) {
+            stringBuilder.append("&start="+quantidade);
+        }
         in = performRequest(stringBuilder);
-
+        Log.i("Link", "link "+stringBuilder);
         // Parse json.
         JsonFactory factory = new JsonFactory();
         mapper = new ObjectMapper(factory);

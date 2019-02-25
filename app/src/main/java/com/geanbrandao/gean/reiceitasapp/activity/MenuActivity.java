@@ -48,6 +48,12 @@ public class MenuActivity extends AppCompatActivity
     private CircleImageView ivFotoPerfil;
     private TextView mNome, mEmail;
     private FirebaseAuth mAuth;
+    private Yummly y;
+    private int numAtualizacoes = 0;
+    private int novasReceitas = 5;
+
+    private List<Recipe> listaAnterior = new ArrayList<>();
+    //private List<Recipe> listaNova = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,13 +83,13 @@ public class MenuActivity extends AppCompatActivity
         swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
         swipeRefreshLayout.setOnRefreshListener(this);
 
-        Yummly y = new Yummly(getResources().getString(R.string.appId),
+        y = new Yummly(getResources().getString(R.string.appId),
                 getResources().getString(R.string.appKey));
         ResultadoFeed result;
 
         Log.i("RetornoApi", "antes do try ");
         try {
-            result = y.search();
+            result = y.search(0);
             for (Recipe recipe : result.getMatches()) {
                 String url = recipe.getSmallImageUrls().get(0);
                 recipe.getSmallImageUrls().set(0, MelhoraImagem.alteraUrl(url));
@@ -176,6 +182,33 @@ public class MenuActivity extends AppCompatActivity
 
     @Override
     public void onRefresh() {
+        swipeRefreshLayout.setRefreshing(true);
+        ResultadoFeed result;
+        numAtualizacoes++;
+        Log.i("RetornoApi", "antes do try ");
+        listaAnterior.clear();
+        Log.i("List", "Tamanho recepis: "+recipes.size());
+        listaAnterior.addAll(recipes);
+        if(listaAnterior.size()>=100){
+            listaAnterior.clear();
+        }
+        recipes.clear(); // limpa lista
+
+        try {
+            result = y.search(numAtualizacoes*novasReceitas);
+            for (Recipe recipe : result.getMatches()) {
+                String url = recipe.getSmallImageUrls().get(0);
+                recipe.getSmallImageUrls().set(0, MelhoraImagem.alteraUrl(url));
+                recipes.add(recipe);
+            }
+
+            ValoresEstaticos.attribution = result.getAttribution();
+            recipes.addAll(listaAnterior);
+            mAdapater.notifyDataSetChanged();
+        } catch (Exception e) {
+            Log.i("RetornoApi", "Erro "+e);
+            e.printStackTrace();
+        }
         swipeRefreshLayout.setRefreshing(false);
     }
 
